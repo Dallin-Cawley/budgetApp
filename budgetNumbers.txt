@@ -1,0 +1,6 @@
+Monthly Income 1440
+Housing Cost 695
+Power 25
+Gas 50
+Automotive 0
+Personal Expenses 0
