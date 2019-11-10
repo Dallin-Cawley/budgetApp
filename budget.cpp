@@ -5,19 +5,50 @@
 #include <sstream>
 #include <iomanip>
 
+#include "stringManip.cpp"
 #include "recipe.h"
+#include "ingredient.h"
+#include "../sorts/InsertionSort/insertionSort.h"
 
 using namespace std;
 
-struct Category
+class Category
 {
+   private:
    string name;
    double amount;
+
+   public:
+   void setName(string name);
+   void setAmount(double amount);
+
+   string getName()   {   return name;   }
+   double getAmount() {   return amount; }
+
+   Category & operator - (Category & rhs);
+
+   friend vector <Category> startUp();
 };
 
-ostream & operator << (ostream &out, const Category &c)
+void Category::setName(string name)
 {
-   out << setw(20) << c.name << c.amount << endl;
+   this->name = name;
+   this->name += " ";
+}
+
+void Category::setAmount(double amount)
+{
+   this->amount = amount;
+}
+
+ostream & operator << (ostream &out, Category &c)
+{
+   out << setw(20) << c.getName() << c.getAmount() << endl;
+}
+
+Category & Category::operator - (Category & rhs)
+{
+   this->amount -= rhs.getAmount();
 }
 
 /*****************************************************
@@ -102,7 +133,7 @@ vector <Category> startUp()
 } //end of startUp()
 
 /*****************************************************
- * Prine-Budget
+ * Print-Budget
  * Expects a vector of type 'Category' and prints
  * the contents into a right aligned column.
  *
@@ -114,10 +145,22 @@ void printBudget(vector <Category> expenseInfo)
         << setfill(' ') << setw(47) <<  "Current Budget: " << endl
         << setfill('*') << setw(80) << "*" << endl;
    cout << setfill(' ');
+
+   Category leftOver;
+   leftOver.setName("Unused Money ");
+   leftOver.setAmount(expenseInfo.front().getAmount());
+
    for (auto it = expenseInfo.begin(); it != expenseInfo.end(); ++it)
    {
       cout << *it;
+      if (it != expenseInfo.begin())
+      {
+         leftOver - *it;
+      }
    }
+
+   cout << endl << leftOver;
+
 }
 
 /*****************************************************
@@ -147,23 +190,6 @@ void printHelp(int help)
 	   cout << "  Modify <Insert Category Name> - Change the name of a Category" << endl << endl;
 	}
 }
-
-/*****************************************************
- * Lower-Case
- * Expects a string and lowercases all characters.
- *
- * Returns the string with all letters lowercased.
- ****************************************************/
-string lowerCase(string userInput)
-{
-   for (int i = 0; i < userInput.size(); i++)
-   {
-      userInput[i] = tolower(userInput[i]);
-   }
-
-   return userInput;
-}
-
 /*****************************************************
  * Find
  * expects a string name of an item to be found
@@ -175,9 +201,9 @@ string lowerCase(string userInput)
 int find(string item, vector <Category> categories)
 {
    item += " ";
-   for (int i = 0; i < categories.size(); i++)
+   for (int i = 0; i <= categories.size(); i++)
    {
-      if (item == lowerCase(categories[i].name))
+      if (item == lowerCase(categories[i].getName()))
       {
          return i;
       }
@@ -241,11 +267,12 @@ int main()
          {
             Category cTemp;
 
-	    cTemp.name = userInputBackU;
-	    cTemp.name += " ";
+	    cTemp.setName(userInputBackU);
 
 	    cout << "How much will be spent in this Category? ";
-	    cin >> cTemp.amount;
+	    double dTemp;
+	    cin >> dTemp;
+	    cTemp.setAmount(dTemp);
 
 	    expenseInfo.push_back(cTemp);
 	 }   //end of add condition
@@ -256,6 +283,7 @@ int main()
 	    int index = find(userInputBack, expenseInfo);
             vector <Category>::iterator vit = expenseInfo.begin();
 	    
+	    //Moves the iterator to desired Category for deletion
 	    for(int i = 0; i <= index; ++vit, i++)
 	    {
 	       if (index == 0)
@@ -274,9 +302,10 @@ int main()
 	    int index = find(userInputBack, expenseInfo);
 
             cout << "What is the new name of the Category? ";
-	    getline(cin, expenseInfo[index].name);
+	    string nTemp;
+	    getline(cin, nTemp);
 
-	    expenseInfo[index].name += " ";
+	    expenseInfo[index].setName(nTemp);
 	 }   //end of modify condition
       }
       else if(sTemp == "change")                  //Change the category expense
@@ -302,7 +331,9 @@ int main()
 	 previousMessage.clear();
 
 	 cout << "What is the new dollar amount? ";
-         cin >> expenseInfo[index].amount;
+	 double dTemp;
+         cin >> dTemp;
+	 expenseInfo[index].setAmount(dTemp);
 
       }
       else if (sTemp == "quit")
@@ -313,7 +344,8 @@ int main()
 
 	 for (int i = 0; i < expenseInfo.size(); i++)
 	 {
-            fout << expenseInfo[i].name << expenseInfo[i].amount << endl;
+            fout << expenseInfo[i].getName() << expenseInfo[i].getAmount();
+	    fout << endl;
 	 }
 
 	 fout.close();
