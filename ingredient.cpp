@@ -2,7 +2,17 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 
+Ingredient::Ingredient()
+{
+   quantity = 0;
+   cost = 0;
+}
+
+/*******************************************
+ * Setters
+ ******************************************/
 void Ingredient::setQuantity(double quantity)
 {
    this->quantity = quantity;
@@ -11,7 +21,19 @@ void Ingredient::setQuantity(double quantity)
 void Ingredient::setName(std::string name)
 {
    this->name = name;
-   this->name += " ";
+
+   double quantity = 0;
+
+   std::stringstream ss;
+   ss << name;
+
+   ss >> quantity;
+
+   setQuantity(quantity);
+
+   std::string measurement;
+   ss >> measurement;
+   setMeasurement(measurement);
 }
 
 void Ingredient::setCost(double cost)
@@ -23,6 +45,10 @@ void Ingredient::setMeasurement(std::string measurement)
 {
    this->measurement = measurement;
 }
+
+/*******************************************
+ * Getters
+ ******************************************/
 
 std::string Ingredient::getMeasurement()
 {
@@ -44,19 +70,30 @@ double Ingredient::getCost()
    return cost;
 }
 
-//std::ostream & operator << (std::ostream & out, double num)
-//{
-//   out << double(num);
-//}
 
 std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
 {
-   out << ingredient.getQuantity();
-   out.flush();
-   out << ingredient.getMeasurement();
-   out << ingredient.getName();
-   out << ingredient.getCost();
-   out << std::endl;
+   if (ingredient.getName().size() > 0)
+   {
+      out << "Quantity: ";
+      out << ingredient.getQuantity() << std::endl;
+   
+      out << "Measurement: ";
+      out << ingredient.getMeasurement() << std::endl;
+   
+      out << "Name: ";
+      out << ingredient.getName() << std::endl << std::endl;
+   
+      if (ingredient.getCost() > 0)
+         out << ingredient.getCost();
+      
+      return out;
+   }
+   else
+   {
+      return out;
+   }
+
 }
 
 

@@ -12,6 +12,8 @@ class Ingredient
    std::string measurement;
 
    public:
+   Ingredient();
+
    void setQuantity(double quantity);
    void setName(std::string name);
    void setCost(double cost);

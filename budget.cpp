@@ -5,51 +5,13 @@
 #include <sstream>
 #include <iomanip>
 
-#include "stringManip.cpp"
+#include "stringManip.h"
 #include "recipe.h"
 #include "ingredient.h"
 #include "../sorts/InsertionSort/insertionSort.h"
+#include "category.h"
 
 using namespace std;
-
-class Category
-{
-   private:
-   string name;
-   double amount;
-
-   public:
-   void setName(string name);
-   void setAmount(double amount);
-
-   string getName()   {   return name;   }
-   double getAmount() {   return amount; }
-
-   Category & operator - (Category & rhs);
-
-   friend vector <Category> startUp();
-};
-
-void Category::setName(string name)
-{
-   this->name = name;
-   this->name += " ";
-}
-
-void Category::setAmount(double amount)
-{
-   this->amount = amount;
-}
-
-ostream & operator << (ostream &out, Category &c)
-{
-   out << setw(20) << c.getName() << c.getAmount() << endl;
-}
-
-Category & Category::operator - (Category & rhs)
-{
-   this->amount -= rhs.getAmount();
-}
 
 /*****************************************************
  * File-Doesnt-Exist
@@ -104,6 +66,7 @@ vector <Category> startUp()
 
    //Load money values and categories into a vector of 'Category' structs
    //for usage with rest of program
+   int i = 0;
    while (!fromFile.eof())
    {
       Category temp;
@@ -111,9 +74,10 @@ vector <Category> startUp()
       {
          stringstream toCategory;
 	 toCategory << word;
-
 	 if (toCategory >> temp.amount)
 	 {
+		 i++;
+		 cout << i << endl;
             expenseInfo.push_back(temp);
 	    toCategory.clear();
 	    break;
@@ -121,13 +85,12 @@ vector <Category> startUp()
 	 else
 	 {
 	    temp.name += word;
-	    temp.name += " ";
+	    temp.name += ' ';
 	 }
 
 	 toCategory.clear();
       }
    }
-
 
    return expenseInfo;
 } //end of startUp()
@@ -150,16 +113,32 @@ void printBudget(vector <Category> expenseInfo)
    leftOver.setName("Unused Money ");
    leftOver.setAmount(expenseInfo.front().getAmount());
 
+   int i = 0;
+   int column2 = expenseInfo[0].numDigits() - 6;
+
    for (auto it = expenseInfo.begin(); it != expenseInfo.end(); ++it)
    {
-      cout << *it;
-      if (it != expenseInfo.begin())
+      if (((i + 1) % 2) == 0)
+      {
+         (*it).printCategory(column2 - (expenseInfo[i - 1].numDigits() - 6),i);
+         cout << endl;
+      }
+      else
+      {
+         (*it).printCategory(0, i);
+      }
+
+      if (i != 0)
       {
          leftOver - *it;
       }
+
+      i++;
    }
 
-   cout << endl << leftOver;
+   cout << endl << endl;
+   leftOver.printCategory();
+   cout << endl;
 
 }
 
@@ -178,8 +157,13 @@ void printHelp(int help)
 	
         	<< "  Manage Categories"
                 << setw(50) << " - Add, delete, or rename a category." << endl
-        	<< "  Change <Insert Category Here>"
+        
+		<< "  Change <Insert Category Here>"
                 << "  - Change the inserted categories expense." << endl;
+	   
+	   cout << "  Recipes"
+	        << "  - Enter recipes menue for dinner planning and shopping."
+		                                                 << endl;
 	}
 	else if (help == 2)
 	{
@@ -201,9 +185,13 @@ void printHelp(int help)
 int find(string item, vector <Category> categories)
 {
    item += " ";
-   for (int i = 0; i <= categories.size(); i++)
+   for (int i = 0; i < categories.size(); i++)
    {
-      if (item == lowerCase(categories[i].getName()))
+      if (i >= categories.size())
+      {
+         break;
+      }
+      else if (item == lowerCase(categories[i].getName())) 
       {
          return i;
       }
@@ -217,7 +205,7 @@ int main()
    vector <Category> expenseInfo = startUp();
 
    string userInput;
-   string previousMessage;
+   string inputErrorMessage;
 
    while (userInput != "quit")
    {
@@ -225,12 +213,13 @@ int main()
 
       printBudget(expenseInfo);
       cout << endl;
+
       printHelp(1);
       cout << endl << endl;
 
-      if (!previousMessage.empty())
+      if (!inputErrorMessage.empty())
       {
-         cout << previousMessage << endl << endl;
+         cout << inputErrorMessage << endl << endl;
       }
       else
       {
@@ -246,6 +235,7 @@ int main()
 
       if (userInput == "manage categories")      //Add or delete a category.
       {
+	 inputErrorMessage.clear();
          system("clear");
 	 printBudget(expenseInfo);
 	 cout << endl;
@@ -310,12 +300,18 @@ int main()
       }
       else if(sTemp == "change")                  //Change the category expense
       {                                          //amount.
-         sTemp = userInput.substr(7);
          int index = 0;
+
 	 try
 	 {
-	    index = find(sTemp, expenseInfo);
+	    sTemp = userInput.substr(7);
 
+	    if (sTemp.empty())
+	    {
+               throw "Passed string is empty. Try again";
+	    }
+
+	    index = find(sTemp, expenseInfo);
 	    if (index < 0)
 	    {
 	       throw "Category not found. Try again.";
@@ -323,12 +319,12 @@ int main()
 	 }
    	 catch (const char* message)
 	 {
-            previousMessage = message;
+            inputErrorMessage = message;
             cout << message << endl;
 	    continue;
 	 }
 
-	 previousMessage.clear();
+	 inputErrorMessage.clear();
 
 	 cout << "What is the new dollar amount? ";
 	 double dTemp;
@@ -350,9 +346,13 @@ int main()
 
 	 fout.close();
       }
+      else if (userInput == "recipes")
+      {
+         recipeManip();   //Code for manipulation with the recipes is
+      }                   //in recipe.cpp
       else
       {
-         cout << "I don't know what that means" << endl;
+         inputErrorMessage = "I don't know what that means";
       }
    }
 }

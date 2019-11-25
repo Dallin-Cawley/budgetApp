@@ -1,6 +1,12 @@
-Monthly Income 1440
+Monthly Income 1345.1
 Housing Cost 695
-Power 25
-Gas 50
-Automotive 0
-Personal Expenses 0
+Power 30
+Intermountain Gas 16
+Automotive 90
+Car Repair 12
+Groceries 150
+Savings 65
+Phone Bill 40
+Tithing 135
+Subscriptions 11.45
+Fun Money 100
