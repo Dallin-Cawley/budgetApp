@@ -1,0 +1,337 @@
+Recipes/Appetizers/Cheese Ball.txt
+Recipes/Appetizers/Game -Day Guacamole.txt
+Recipes/Appetizers/Hot Artichoke Dip.txt
+Recipes/Appetizers/Jalapeno Deviled Eggs.txt
+Recipes/Appetizers/Kaydene’s Vegetable Dip.txt
+Recipes/Appetizers/Sassy Green Dip.txt
+Recipes/Appetizers/Spinach Dip.txt
+Recipes/Bars and Cookies/Brownies.txt
+Recipes/Bars and Cookies/Butterscotch Brownies.txt
+Recipes/Bars and Cookies/Butterscotch Cookie Bars.txt
+Recipes/Bars and Cookies/Cake Mix Cookies.txt
+Recipes/Bars and Cookies/Cherries Jubilee Cheesecake Bars.txt
+Recipes/Bars and Cookies/Chocolate Chip Cookies.txt
+Recipes/Bars and Cookies/Chocolate Chips Bars.txt
+Recipes/Bars and Cookies/Chocolate Crunch Brownies.txt
+Recipes/Bars and Cookies/Chocolate Fudge Cookies.txt
+Recipes/Bars and Cookies/Chocolate No Bake Bars.txt
+Recipes/Bars and Cookies/Chocolate Revel Bars.txt
+Recipes/Bars and Cookies/Dad_s Ginger Snaps.txt
+Recipes/Bars and Cookies/Heath Cookies.txt
+Recipes/Bars and Cookies/Magic Cookie Bars.txt
+Recipes/Bars and Cookies/Magic Peanut Butter Middles.txt
+Recipes/Bars and Cookies/Mrs. Field_s Cookies.txt
+Recipes/Bars and Cookies/No-Bake Cookies.txt
+Recipes/Bars and Cookies/Oatmeal Scotchies.txt
+Recipes/Bars and Cookies/Old-Fashioned Buttermilk Fudge Brownies.txt
+Recipes/Bars and Cookies/Peanut Butter Bars.txt
+Recipes/Bars and Cookies/Pumpkin Bars.txt
+Recipes/Bars and Cookies/Pumpkin Chocolate Chip Cookies.txt
+Recipes/Bars and Cookies/Raisin Oatmeal Classics.txt
+Recipes/Bars and Cookies/Snickerdoodles.txt
+Recipes/Bars and Cookies/Soft Gingerbread Cookies.txt
+Recipes/Bars and Cookies/Sugar Cookie Bars.txt
+Recipes/Bars and Cookies/Sugar Cookies.txt
+Recipes/Bars and Cookies/Vanilla Chip Macadamia Bars.txt
+Recipes/Bars and Cookies/Vanilla Sugar Cookies.txt
+Recipes/Beans, Rice, and Pasta/All Raw Spaghetti Sauce.txt
+Recipes/Beans, Rice, and Pasta/Bacon Cheeseburger Pasta.txt
+Recipes/Beans, Rice, and Pasta/Baked Bean Casserole.txt
+Recipes/Beans, Rice, and Pasta/Baked Beans.txt
+Recipes/Beans, Rice, and Pasta/Baked Halibut with Avocado.txt
+Recipes/Beans, Rice, and Pasta/Black Beans.txt
+Recipes/Beans, Rice, and Pasta/Bowtie Pasta Salad with Chicken.txt
+Recipes/Beans, Rice, and Pasta/Cheesy Mexican Rice Casserole.txt
+Recipes/Beans, Rice, and Pasta/Cilantro Pesto.txt
+Recipes/Beans, Rice, and Pasta/Cilantro Rice.txt
+Recipes/Beans, Rice, and Pasta/Easy Lo Mein.txt
+Recipes/Beans, Rice, and Pasta/Enchilada Sauce.txt
+Recipes/Beans, Rice, and Pasta/Fettuccine with Bolognese Sauce.txt
+Recipes/Beans, Rice, and Pasta/Four-grain-and vegetable burritos.txt
+Recipes/Beans, Rice, and Pasta/Fusilli with Salsa Rosa.txt
+Recipes/Beans, Rice, and Pasta/Garden Full Of Goodness Lasagna.txt
+Recipes/Beans, Rice, and Pasta/Homemade Egg Noodles.txt
+Recipes/Beans, Rice, and Pasta/Italian Chicken and Pasta.txt
+Recipes/Beans, Rice, and Pasta/Mac and Cheese.txt
+Recipes/Beans, Rice, and Pasta/Marinara Sauce.txt
+Recipes/Beans, Rice, and Pasta/Meaty Spaghetti Sauce.txt
+Recipes/Beans, Rice, and Pasta/Mexican Haystacks.txt
+Recipes/Beans, Rice, and Pasta/Olive Garden Alfredo.txt
+Recipes/Beans, Rice, and Pasta/Pasta with Tomatoes, Feta, and Herbs.txt
+Recipes/Beans, Rice, and Pasta/Pepperoni Pizza Snowman Pasta.txt
+Recipes/Beans, Rice, and Pasta/Pesto.txt
+Recipes/Beans, Rice, and Pasta/Popeye’s Red Beans and Rice.txt
+Recipes/Beans, Rice, and Pasta/Refried Beans.txt
+Recipes/Beans, Rice, and Pasta/Sausage Pasta Salad.txt
+Recipes/Beans, Rice, and Pasta/Skinny Beef _ Broccoli Noodles.txt
+Recipes/Breads and Rolls/All-Season Quick Loaves.txt
+Recipes/Breads and Rolls/Bread Sticks.txt
+Recipes/Breads and Rolls/Carrot Bread.txt
+Recipes/Breads and Rolls/Cheddar Biscuits.txt
+Recipes/Breads and Rolls/Cherry Bread.txt
+Recipes/Breads and Rolls/Famous Golden Cornbread.txt
+Recipes/Breads and Rolls/French Bread.txt
+Recipes/Breads and Rolls/Funeral Sandwiches.txt
+Recipes/Breads and Rolls/Homemade Tortillas.txt
+Recipes/Breads and Rolls/Honey Party Buns.txt
+Recipes/Breads and Rolls/Italian Bread Bowls - Printer Friendly - Allrecipes.txt
+Recipes/Breads and Rolls/Oat Pan Rolls.txt
+Recipes/Breads and Rolls/Overnight Gingerbread Cinnamon Rolls.txt
+Recipes/Breads and Rolls/Pizza Dough.txt
+Recipes/Breads and Rolls/Potato Pizza.txt
+Recipes/Breads and Rolls/Shirley Fogleman_s Hot Rolls.txt
+Recipes/Breakfast/Amish Baked Oatmeal.txt
+Recipes/Breakfast/Apple-Bacon Cheddar Waffles with Apple Butter Syrup.txt
+Recipes/Breakfast/Applesauce Muffins.txt
+Recipes/Breakfast/Biscuits Supreme.txt
+Recipes/Breakfast/Brown Sugar Muffins.txt
+Recipes/Breakfast/Buttermilk Pancakes.txt
+Recipes/Breakfast/Cheese Quiche.txt
+Recipes/Breakfast/Christmas Morning Breakfast.txt
+Recipes/Breakfast/Cinnamon Bread in a Can.txt
+Recipes/Breakfast/Cinnamon Roll cake.txt
+Recipes/Breakfast/Cinnamon Surprises.txt
+Recipes/Breakfast/Cinnamon Swirl Loaf.txt
+Recipes/Breakfast/Crepes.txt
+Recipes/Breakfast/Crispy Potato Quiche.txt
+Recipes/Breakfast/German Pancakes.txt
+Recipes/Breakfast/Grandma_s Cinnamon Rolls.txt
+Recipes/Breakfast/Green Chili Soufflé.txt
+Recipes/Breakfast/Healthy Pepper Hash.txt
+Recipes/Breakfast/Healthy Pumpkin Muffins Recipe _ Ellie Krieger _ Food Network.txt
+Recipes/Breakfast/Homemade Granola.txt
+Recipes/Breakfast/Irish Soda Bread.txt
+Recipes/Breakfast/Lemon Zucchini Bread.txt
+Recipes/Breakfast/Lil_ Citrus Muffins.txt
+Recipes/Breakfast/Microwave Granola.txt
+Recipes/Breakfast/Moist Chocolate Muffins.txt
+Recipes/Breakfast/Oatmeal Waffles.txt
+Recipes/Breakfast/Peanut Butter Granola Bars.txt
+Recipes/Breakfast/Perfect Party Mini Quiches.txt
+Recipes/Breakfast/Pumpkin Chocolate Chip Muffins.txt
+Recipes/Breakfast/Pumpkin Muffins.txt
+Recipes/Breakfast/Pumpkin Pie Bake.txt
+Recipes/Breakfast/Rhubarb Coffee Cake.txt
+Recipes/Breakfast/Rise and Shine Cookies.txt
+Recipes/Breakfast/Sheet Pan Buttermilk Pancakes.txt
+Recipes/Breakfast/Sour Cream Coffee Cake.txt
+Recipes/Breakfast/Spudnuts.txt
+Recipes/Breakfast/Sweet Potato Muffins.txt
+Recipes/Breakfast/Swiss Oatmeal.txt
+Recipes/Breakfast/Turkey Sausage.txt
+Recipes/Breakfast/Twist of Lime Zucchini Bread.txt
+Recipes/Breakfast/Waffles.txt
+Recipes/Breakfast/Whole Wheat Pancakes.txt
+Recipes/Breakfast/Zucchini Raisin Whole Wheat Muffins.txt
+Recipes/Candies/Buttermilk Fudge.txt
+Recipes/Candies/Christmas Treats.txt
+Recipes/Candies/Crockpot Cinnamon Almonds.txt
+Recipes/Candies/Festive Chocolate Bark.txt
+Recipes/Candies/Fudge.txt
+Recipes/Candies/Microwave Caramels.txt
+Recipes/Candies/Oreo Truffles.txt
+Recipes/Candies/Peanut Brittle.txt
+Recipes/Candies/Rice Krispies Candy.txt
+Recipes/Candies/Salted Nut Roll.txt
+Recipes/Candies/See_s Fudge.txt
+Recipes/Candies/Snickers Fudge.txt
+Recipes/Candies/Toffee.txt
+Recipes/Canning Recipes/Red Hot Jelly.txt
+Recipes/Casseroles/Cheese Sandwich Souffle.txt
+Recipes/Casseroles/Chicken Divan.txt
+Recipes/Casseroles/Chicken Spaghetti Casserole.txt
+Recipes/Casseroles/Dutch oven Chicken Enchiladas.txt
+Recipes/Casseroles/Enchilada-Zagna.txt
+Recipes/Casseroles/Green Bean Casserole from Scratch.txt
+Recipes/Casseroles/Macaroni Casserole.txt
+Recipes/Casseroles/Pizza Casserole.txt
+Recipes/Casseroles/Sausage and Rice Casserole.txt
+Recipes/Casseroles/Spanish Delights.txt
+Recipes/Casseroles/Spanish Rice.txt
+Recipes/Casseroles/Texas-Style Lasagna.txt
+Recipes/Casseroles/Tuna Rice Casserole.txt
+Recipes/Desserts/3-2-1 cobbler.txt
+Recipes/Desserts/Amy_s Cake.txt
+Recipes/Desserts/Angel Food Ice Cream Cake.txt
+Recipes/Desserts/Apple Pudding.txt
+Recipes/Desserts/Boiled Raisin Cake.txt
+Recipes/Desserts/Bread Pudding.txt
+Recipes/Desserts/Brown Bottom Cupcakes.txt
+Recipes/Desserts/BROWNIES.txt
+Recipes/Desserts/Butterscotch Pumpkin Gingerbread Trifle.txt
+Recipes/Desserts/Chocolate Covered Cherries.txt
+Recipes/Desserts/Chocolate Earthquake Cake.txt
+Recipes/Desserts/Chocolate Eclair Cake.txt
+Recipes/Desserts/Chocolate Silk Pie.txt
+Recipes/Desserts/Chocolate Waffles.txt
+Recipes/Desserts/Chocolate Zucchini Cake.txt
+Recipes/Desserts/Coconut Lime Bars.txt
+Recipes/Desserts/Cookie Dough Brownies.txt
+Recipes/Desserts/Cream Puffs with Ice Cream and Hot Fudge.txt
+Recipes/Desserts/Creamy Rice Pudding.txt
+Recipes/Desserts/Earthquake Cake.txt
+Recipes/Desserts/Favorite Cobbler.txt
+Recipes/Desserts/Frosted Banana Bars.txt
+Recipes/Desserts/Glazed Cinnamon Apples.txt
+Recipes/Desserts/Homemade Vanilla Ice Cream.txt
+Recipes/Desserts/Homemade Wendy_s Frosties.txt
+Recipes/Desserts/Indoor Smores.txt
+Recipes/Desserts/Kira_s Homade Brownies.txt
+Recipes/Desserts/Lazy Daisy Oatmeal Cake.txt
+Recipes/Desserts/Lemon Cake.txt
+Recipes/Desserts/Marble Square Cake.txt
+Recipes/Desserts/Mardell_s Cake.txt
+Recipes/Desserts/Mini Cheesecakes.txt
+Recipes/Desserts/Oreo Pie.txt
+Recipes/Desserts/Peach Cheesecake Pie.txt
+Recipes/Desserts/Peanut Brittle.txt
+Recipes/Desserts/Peanut Butter Pie.txt
+Recipes/Desserts/Pineapple Cake.txt
+Recipes/Desserts/Pineapple Cream Cake.txt
+Recipes/Desserts/Pint Lemon Cupcakes.txt
+Recipes/Desserts/Pumpkin Cheesecake.txt
+Recipes/Desserts/Pumpkin Roll Cake.txt
+Recipes/Desserts/Pumpkin Spice Cake.txt
+Recipes/Desserts/Raspberry Coconut Popsicles.txt
+Recipes/Desserts/Raspberry Cream Trifle.txt
+Recipes/Desserts/Rhubarb Pudding Cake.txt
+Recipes/Desserts/Rice Krispie MM Cake.txt
+Recipes/Desserts/Rice Krispies Treats.txt
+Recipes/Desserts/Rocky Road Frosting.txt
+Recipes/Desserts/Root Beer Cake.txt
+Recipes/Desserts/Sour Cream Bundt Cake.txt
+Recipes/Desserts/Staker_s Frosting.txt
+Recipes/Desserts/Super Peach Pie.txt
+Recipes/Desserts/Sweet Strawberry-Rhubarb Pie.txt
+Recipes/Desserts/To Die For Carrot Cake.txt
+Recipes/Desserts/Vanilla Birthday Cake with Old.txt
+Recipes/Desserts/Vanilla Ice Cream.txt
+Recipes/Drinks/Brazilian Lemonade.txt
+Recipes/Drinks/Butterbeer.txt
+Recipes/Drinks/Chocolate Cherry Buttermilk Shake.txt
+Recipes/Drinks/Christmas Punch.txt
+Recipes/Drinks/Drink.txt
+Recipes/Drinks/Honey, Orange, Lemon Tea.txt
+Recipes/Drinks/Hot Cocoa Mix.txt
+Recipes/Drinks/Orange Julius Recipe - Food.txt
+Recipes/Drinks/Pina Coladas.txt
+Recipes/Drinks/Raspberry Key Lime Cheesecake Milkshake.txt
+Recipes/Drinks/Raspberry Mint Crush.txt
+Recipes/Drinks/Raw Cashew Milk.txt
+Recipes/Drinks/Vanilla Hot Chocolate.txt
+Recipes/Meats/Baked Chicken Chimichangas.txt
+Recipes/Meats/Balsamic Chicken Sandwich.txt
+Recipes/Meats/Balsamic Chicken.txt
+Recipes/Meats/Beef and Broccoli Stir-fry.txt
+Recipes/Meats/Buttermilk Meatloaf.txt
+Recipes/Meats/Chicken Cacciatore.txt
+Recipes/Meats/CHICKEN CORDON BLEU WITH DIJON CREAM SAUCE.txt
+Recipes/Meats/Chicken Pizza Packets.txt
+Recipes/Meats/Chicken with Basil Cream Sauce.txt
+Recipes/Meats/Classic Meatloaf.txt
+Recipes/Meats/Creamy Chicken Curry in a Hurry.txt
+Recipes/Meats/Crock Pot Balsamic Pork Roast.txt
+Recipes/Meats/Crockpot Hawaiian Chicken.txt
+Recipes/Meats/Fiesta Chicken Fajitas.txt
+Recipes/Meats/Glazed Ham Slices.txt
+Recipes/Meats/Honey BBQ Baked Chicken Thighs Recipe.txt
+Recipes/Meats/Kaydene_s Royal Burgers.txt
+Recipes/Meats/Meatballs.txt
+Recipes/Meats/Mexican Chili Cheese Burgers.txt
+Recipes/Meats/Pineapple Chicken.txt
+Recipes/Meats/Pul Kogi.txt
+Recipes/Meats/Sesame Beef.txt
+Recipes/Meats/Sloppy Joes.txt
+Recipes/Meats/Slow Cooker Creamy Italian Chicken.txt
+Recipes/Meats/Southwestern Chicken.txt
+Recipes/Meats/Turkey Sausage.txt
+Recipes/Misc/Amy_s BBQ sauce.txt
+Recipes/Misc/Baby Wipes.txt
+Recipes/Misc/Cinnamon Ornaments.txt
+Recipes/Misc/CONDENSED CREAM OF CHICKEN SOUP.txt
+Recipes/Misc/Grain-Free Peanut Butter Apple Doggy Cake.txt
+Recipes/Misc/Homemade Pan Release.txt
+Recipes/Misc/HOMEMADE STABILIZED WHIPPED CREAM.txt
+Recipes/Misc/Julie_s Playdough.txt
+Recipes/Misc/Poultry Seasoning.txt
+Recipes/Misc/Taco Seasoning Mix.txt
+Recipes/Salads/B.L.T. Pasta.txt
+Recipes/Salads/Blueberry Salad.txt
+Recipes/Salads/Blue Cheese and Artichoke Salad.txt
+Recipes/Salads/Bowtie Pasta Salad.txt
+Recipes/Salads/Cherry Orange Delight.txt
+Recipes/Salads/Chicken Salad.txt
+Recipes/Salads/Creamy Italian Dressing.txt
+Recipes/Salads/Fruit Salad.txt
+Recipes/Salads/Kale and Feta Salad - Printer Friendly - Allrecipes.txt
+Recipes/Salads/Kathy_s Tomato Salad.txt
+Recipes/Salads/Pasta Salad Dressing.txt
+Recipes/Salads/Salad.txt
+Recipes/Salads/Simple Kale Salad with Lemon Vinaigrette.txt
+Recipes/Salads/Southwest Corn Salad.txt
+Recipes/Salads/Taco Salad with Honey Lime Dressing.txt
+Recipes/Smoothies/Green Pineapple.txt
+Recipes/Smoothies/Mango Berry.txt
+Recipes/Smoothies/Peanut Butter Banana.txt
+Recipes/Smoothies/Rise and Shine.txt
+Recipes/Smoothies/Very Berry.txt
+Recipes/Snacks/Baked Mozarella Bites.txt
+Recipes/Snacks/Black Bean, Hominy, and Corn Salsa.txt
+Recipes/Snacks/Caramel Popcorn.txt
+Recipes/Snacks/Chex Lemon Buddies.txt
+Recipes/Snacks/Chex Muddy Buddies.txt
+Recipes/Snacks/Fresh Salsa.txt
+Recipes/Snacks/Sugar N Spice Nuts.txt
+Recipes/Snacks/Tami’s Salsa.txt
+Recipes/Snacks/Ultimate Trail Mix.txt
+Recipes/Soups/Beef and Barley Soup.txt
+Recipes/Soups/Carrot and corn chowder.txt
+Recipes/Soups/Cauliflower Soup.txt
+Recipes/Soups/Cheese Soup.txt
+Recipes/Soups/Chicken Poblano Soup.txt
+Recipes/Soups/Chunky Vegetable-Lentil Soup.txt
+Recipes/Soups/Cincinatti Chili Recipe.txt
+Recipes/Soups/Cream of Mushroom Soup.txt
+Recipes/Soups/Easy Black Bean Soup.txt
+Recipes/Soups/Egg Drop Soup.txt
+Recipes/Soups/Five Hour Stew.txt
+Recipes/Soups/Hearty Broccoli Cheese Soup.txt
+Recipes/Soups/Minestrone.txt
+Recipes/Soups/Navy Bean Soup.txt
+Recipes/Soups/Noelle_s Chili.txt
+Recipes/Soups/SLOW COOKER POTATO SOUP.txt
+Recipes/Soups/Spicy Cabbage-Beef Soup.txt
+Recipes/Soups/Tomato Basil Parmesan Soup.txt
+Recipes/Soups/Tomato Soup.txt
+Recipes/Soups/Tortellini Soup.txt
+Recipes/Soups/TURKEY CHILI.txt
+Recipes/Soups/Vegetable Bean Soup.txt
+Recipes/Soups/White Chili.txt
+Recipes/Soups/Wintertime Chili.txt
+Recipes/Syrups and Sauces/Barbeque Sauce.txt
+Recipes/Syrups and Sauces/Buttermilk Syrup.txt
+Recipes/Syrups and Sauces/Coconut Syrup.txt
+Recipes/Syrups and Sauces/Cranberry Relish.txt
+Recipes/Syrups and Sauces/Cranberry Salsa.txt
+Recipes/Syrups and Sauces/Creamy Tomatillo Ranch Dressing.txt
+Recipes/Syrups and Sauces/Enchilada Sauce.txt
+Recipes/Syrups and Sauces/Fluffy Mustard.txt
+Recipes/Syrups and Sauces/Fresh Strawberry Sauce.txt
+Recipes/Syrups and Sauces/HOMEMADE BBQ SAUCE RECIPE.txt
+Recipes/Syrups and Sauces/Hot Fudge Sauce.txt
+Recipes/Syrups and Sauces/Mango Chutney.txt
+Recipes/Syrups and Sauces/Marshmallow Caramel Sauce.txt
+Recipes/Syrups and Sauces/Mom’s Buttermilk Dressing.txt
+Recipes/Syrups and Sauces/Orange Syrup.txt
+Recipes/Syrups and Sauces/Teriyaki Sauce.txt
+Recipes/Syrups and Sauces/Waffle Syrup.txt
+Recipes/Vegetables/Baked Ziti and Vegetables.txt
+Recipes/Vegetables/Corn Casserole.txt
+Recipes/Vegetables/Egg With Tomatoes_ Chinese Home-style Recipe - Chinese.Food.txt
+Recipes/Vegetables/Grilled Mexican Street Corn.txt
+Recipes/Vegetables/Ham and Cheese Bread Recipe _ Taste of Home.txt
+Recipes/Vegetables/Italian Roasted Cauliflower Salad.txt
+Recipes/Vegetables/Marinated cucumbers and Tomatoes.txt
+Recipes/Vegetables/Philly Cheesesteak Stuffed Peppers.txt
+Recipes/Vegetables/Picnic Zucchini Bean Salad.txt
+Recipes/Vegetables/Spicy Oven Fries.txt

@@ -24,6 +24,8 @@ class Ingredient
    double getCost();
    std::string getMeasurement();
 
+   bool empty();
+
    Ingredient & operator=(Ingredient & rhs)
    {
       this->quantity    = rhs.getQuantity();

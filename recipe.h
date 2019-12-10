@@ -27,7 +27,10 @@ class Recipe
    std::string getName() const;
    double getTotalCost() const;
    std::vector <Ingredient> getIngredients() const;
+   std::vector <Ingredient> &getIngredients();
    std::string getInstructions() const;
+
+   bool empty();
 
    Recipe & operator = (Recipe &rhs)
    {
@@ -54,8 +57,11 @@ class Recipe
 
 std::ostream & operator << (std::ostream & out, Recipe & rhs);
 std::ostream & operator << (std::ostream & out, std::vector <Recipe> & rhs);
+bool operator == (Recipe & lhs, Recipe & rhs);
 
-std::vector <Recipe> createRecipeList();
-std::vector <Ingredient> printRecipeVector(std::vector <Ingredient> ingredients);
+void printRecipeVector(std::vector <Ingredient> ingredients);
 void recipeManip();
+std::vector <std::string> recipePath();
+Recipe parseFile(std::string filePath);
+
 #endif

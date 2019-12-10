@@ -10,6 +10,7 @@
 #include "ingredient.h"
 #include "../sorts/InsertionSort/insertionSort.h"
 #include "category.h"
+#include "recipeCategory.h"
 
 using namespace std;
 
@@ -320,7 +321,6 @@ int main()
    	 catch (const char* message)
 	 {
             inputErrorMessage = message;
-            cout << message << endl;
 	    continue;
 	 }
 

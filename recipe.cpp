@@ -1,14 +1,15 @@
 #include <string>
 #include <list>
-#include <fstream>      //ifstream
-#include <sstream>      //stringstream
+#include <fstream>         //ifstream
+#include <sstream>         //stringstream
 #include <iostream>
-#include <iomanip>      //setw(), setfill()
+#include <iomanip>         //setw(), setfill()
 
 #include "ingredient.h"
 #include "../sorts/InsertionSort/insertionSort.h"
 #include "recipe.h"
-#include "stringManip.h"//lowerCase()
+#include "stringManip.h"   //lowerCase()
+#include "recipeCategory.h"
 
 using namespace std;
 
@@ -41,11 +42,27 @@ Recipe::Recipe(const Recipe & rhs)
  * SETTERS
  *****************/
 
-void Recipe::setName(std::string name)
+void Recipe::setName(string name)
 {
    this->name = name;
-}
 
+//   int j = 0;
+//   for (int i = 0; i < this->name.size(); i++)
+//   {
+//      if (this->name[i] != ' ')
+//      {
+//         this->name[j++] = this->name[i];
+//
+//	 if (this->name[i - 1] != ' ' && this->name[i] == ' ')
+//	 {
+//            this->name[j++] = ' ';
+//	 }
+//      }
+//   }
+//
+//   if (!name.empty())
+//      this->name.erase(j - 1);
+}
 void Recipe::setTotalCost(double totalCost)
 {
    this->totalCost = totalCost;
@@ -56,7 +73,7 @@ void Recipe::addItem(Ingredient newItem)
    ingredients.push_back(newItem);
 }
 
-void Recipe::setInstructions(std::string instructions)
+void Recipe::setInstructions(string instructions)
 {
    this->instructions += instructions;
    this->instructions += " ";
@@ -66,12 +83,12 @@ void Recipe::setInstructions(std::string instructions)
  * GETTERS
  *****************/
 
-std::string Recipe::getInstructions() const
+string Recipe::getInstructions() const
 {
    return instructions;
 }
 
-std::string Recipe::getName() const
+string Recipe::getName() const
 {
    return name;
 }
@@ -81,39 +98,120 @@ double Recipe::getTotalCost() const
    return totalCost;
 }
 
-std::vector <Ingredient> Recipe::getIngredients() const
+vector <Ingredient> Recipe::getIngredients() const
 {
    return ingredients;
 }
 
+vector <Ingredient> &Recipe::getIngredients()
+{
+   return ingredients;
+}
+
+bool Recipe::empty()
+{
+   if (name.empty() && ingredients.empty())
+   {
+      return true;
+   }
+   else
+   {
+      return false;
+   }
+}
 
 /***************************
  * Other necessary Functions
  **************************/
 
-std::vector <Recipe> createRecipeList()
+vector <string> recipePath()
 {
-   std::vector <Recipe> recipes;
 
-   std::ifstream fin;
-   fin.open("Recipes/Beef and Broccoli Stir-fry.txt");
+   ifstream fin;
+   try
+   {
+      fin.open("recipe_filePath.txt");
 
-   std::string word;
+      if (fin.fail())
+      {
+         throw "Unable to open 'recipe_path.txt'";
+      }
+   }
+   catch(const char* message)
+   {
+      system("bash recipe_fileNames.sh");
+      int i = 0;
+      while(i < 5 && fin.fail())
+      {
+         fin.clear();
+	 fin.open("recipe_filePath.txt");
+
+	 if (fin.fail())
+	 {
+	    system("bash recipe_fileNames.sh");
+	 }
+	 i++;
+      }
+
+      if (fin.fail())
+      {
+         cout << "bash recipe_fileName.sh failure" << endl;
+      }
+
+   }
+
+   vector <string> fileNames;
+   string filePath;
+
+   while (!fin.eof())
+   {
+      getline(fin,filePath);
+      fileNames.push_back(filePath);
+      filePath.clear();
+   }
+
+   return fileNames;
+}
+
+Recipe parseFile(string filePath)
+{
+   ifstream fin;
+   Recipe recipe;
+
+   try
+   {
+      fin.open(filePath);
+
+      if (fin.fail())
+      {
+         throw filePath;
+      }
+   }
+   catch (const char* unopened)
+   {
+      cout << "Unable to open " << unopened << endl;
+   }
+
+   string word;
 
    while (!fin.eof()) //Initial reading of the file
    {
-      Recipe recipe;
-
-      while (std::getline(fin, word)) //used to gather the name of the recipe
+      int i = 0;
+      while (!fin.eof()) //used to gather the name of the recipe
       {
-         recipe.setName(word);
+	 getline(fin, word);
+	 if (i == 0)
+	 {	 
+            recipe.setName(word);
+	 }
+	 i++;
+         string lower = lowerCase(word);
 
-         std::string lower = lowerCase(word);
-         if (lower.find("ingredients:"))
+         if (lower.find("ingredients:") != string::npos)
          {
             word.clear();
 
-	    while (std::getline(fin, word))  //begin to gether ingredients
+            while (getline(fin, word))  //begin to gether ingredients
 	    {
                Ingredient ingredient;
 
@@ -122,18 +220,17 @@ std::vector <Recipe> createRecipeList()
 
 	       if (lower == "instructions:")
                {
-                  while (fin >> word)  //begin to gather instructions
-                  { 
+                  while (!fin.eof())  //begin to gather instructions
+                  {
+	             getline(fin, word); 
                      recipe.setInstructions(word);
                   }
-   
                }
                else if (lower != "ingredients:")
-	       {
+               {
                   ingredient.setName(word);
-	       }
-	       
-	       if (!(ingredient.getName() == " "))
+               }
+	       else if (!(ingredient.getName() == " "))
 	       {       
                   recipe.addItem(ingredient);  //Add ingredient to recipe
 	       }       
@@ -142,25 +239,53 @@ std::vector <Recipe> createRecipeList()
 
       }   //end of single recipe loading while loop
    
-      recipes.push_back(recipe);
    }   //end of initial While Loop
-
    fin.close();
 
-   return recipes;   
+   return recipe;
 }
 
-void printRecipeMenu()
+
+
+void printRecipeMenu(vector <RecipeCategory> categories)
 {
    cout << setfill('*') << setw(80) << "*" << endl
         << setfill(' ') << setw(47) <<  "Recipe Menu " << endl
         << setfill('*') << setw(80) << "*" << endl;
    cout << setfill(' ');
 
+
+   //Begin printing the categories in this format....
+   //     "Category Name" ("Category Size")
+   //           eg. Appetizers (9)
+   for (int i = 0; i < categories.size(); i++)
+   {
+      if (categories[i].getName().empty())
+      {
+         continue;
+      }
+      if (i % 2 == 1)
+      {
+         if (categories[i - 1].getSize() / 10 >= 1)  //column 1 is double digit
+	 {
+            cout << setw(31) << categories[i] << endl;
+	 }
+	 else                                        //column 1 issingle digit
+	 {
+            cout << setw(32) << categories[i] << endl;
+	 }
+      }
+      else
+      {
+         cout << setw(25) << categories[i];
+      }
+   }
+
    cout << endl << endl;
 
    
 }
+
 /************************************************
  * RecipeManip()
  * No paremeters.
@@ -175,45 +300,100 @@ void printRecipeMenu()
  ***********************************************/
 void recipeManip()
 {
-   std::string userInput;
+   string userInput;
+   vector <RecipeCategory> categories = createRecipeList();
 
    while (userInput != "quit")
    {
       system("clear");
-      printRecipeMenu();
-      cout << "What would you like to do?";
-      cin >> userInput;
+      printRecipeMenu(categories);
+      cout << "What would you like to do? ";
+      getline(cin, userInput);
+
+      string lower = lowerCase(userInput);
+
+      if (lower == "test")
+      {
+         cout << categories[3].getRecipes()[2];
+//	 printRecipeCategoriesVector(categories);
+      }
+      else if (userInput.find("look at") != string::npos)
+      {
+         string temp = userInput.substr(8);
+         int index = find(categories, temp);
+	 categories[index].printRecipeNames();
+
+	 cout << endl << endl << "Hit enter to return to the Recipe Menu. ";
+	 cin.get();
+      }
    }
 }
 
 
-std::vector <Ingredient> printRecipeVector(std::vector <Ingredient> ingredients)
+void printRecipeVector(vector <Ingredient> ingredients)
 {
-   for (auto it = ingredients.begin(); it != ingredients.end(); ++it)
+   if (ingredients.empty())
    {
-      std::cout << *it;
+      cout << "There are no ingredients." << endl;
+      cout.flush();
+   }
+   else
+   {
+      for (int i = 0; i < ingredients.size(); i++)
+      {
+            cout << ingredients[i];
+      }
+
    }
 }
 
-std::ostream & operator << (std::ostream & out, Recipe & rhs)
+ostream & operator << (ostream & out, Recipe & rhs)
 {
-   out << rhs.getName() << std::endl << std::endl;
+   out << "recipe << operator called" << endl;
+     
+   if (rhs.empty())
+   {
+      return out;
+   }
+   out << rhs.getName() << endl << endl;
 
-   out << "Ingredients:" << std::endl << std::endl;
+   out << "Ingredients:" << endl << endl;
    printRecipeVector(rhs.getIngredients());
 
-   out << "Instructions:" << std::endl;
-   out << rhs.getInstructions() << std::endl << std::endl;
+   if (!rhs.getInstructions().empty())
+   {
+      out << "Instructions:" << endl;
+      out << rhs.getInstructions() << endl << endl;
+   }
+   else
+   {
+      out << "There are no instructions." << endl;
+   }
 
    out << "Total Cost: ";
-   out << rhs.getTotalCost() << std::endl;
+   out << rhs.getTotalCost() << endl;
+
+   return out;
 }
 
-std::ostream & operator << (std::ostream & out, std::vector <Recipe> & rhs)
+ostream & operator << (ostream & out, vector <Recipe> & rhs)
 {
    for (auto it = rhs.begin(); it != rhs.end(); ++it)
    {
       out << *it;
    }
+}
+
+bool operator == (Recipe & lhs, Recipe & rhs)
+{
+   if (lhs.getName() == rhs.getName())
+   {
+      return true;
+   }
+   else
+   {
+      return false;
+   }
+
 }
 

@@ -70,10 +70,17 @@ double Ingredient::getCost()
    return cost;
 }
 
+bool Ingredient::empty()
+{
+   if (name.empty())
+      return true;
+   else
+      return false;
+}
 
 std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
 {
-   if (ingredient.getName().size() > 0)
+   if (!ingredient.empty())
    {
       out << "Quantity: ";
       out << ingredient.getQuantity() << std::endl;
@@ -91,6 +98,7 @@ std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
    }
    else
    {
+      out << "No ingredient" << std::endl;
       return out;
    }
 
