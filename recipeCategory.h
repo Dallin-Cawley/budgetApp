@@ -25,7 +25,7 @@ class RecipeCategory
    std::vector <Recipe> getRecipes() const;
    int getSize() const;
 
-   Recipe find(Recipe item);
+   int find(std::string item);
    int numDigits();
 
    friend std::ostream & operator << (std::ostream &out, RecipeCategory rCategory);

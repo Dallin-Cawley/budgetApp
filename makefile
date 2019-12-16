@@ -16,9 +16,6 @@ recipe.o: recipe.h recipe.cpp stringManip.cpp ingredient.h ingredient.cpp recipe
 recipeCategory.o: recipe.h recipe.cpp recipeCategory.h recipeCategory.cpp
 	g++ -c recipeCategory.cpp -g
 
-insertionSort.o: ../sorts/InsertionSort/insertionSort.h ../sorts/InsertionSort/insertionSort.cpp
-	g++ -c ../sorts/InsertionSort/insertionSort.cpp -g
-
 stringManip.o: stringManip.h stringManip.cpp
 	g++ -c stringManip.cpp -g
 

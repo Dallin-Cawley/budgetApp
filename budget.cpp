@@ -8,7 +8,6 @@
 #include "stringManip.h"
 #include "recipe.h"
 #include "ingredient.h"
-#include "../sorts/InsertionSort/insertionSort.h"
 #include "category.h"
 #include "recipeCategory.h"
 

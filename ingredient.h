@@ -2,6 +2,7 @@
 #define INGREDIENT_H
 
 #include <string>
+#include <vector>
 
 class Ingredient
 {
@@ -37,4 +38,6 @@ class Ingredient
 };
 
 std::ostream & operator << (std::ostream & out, Ingredient & ingredient);
+
+void printIngredientVector(std::vector <Ingredient> ingredients);
 #endif

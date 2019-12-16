@@ -6,7 +6,6 @@
 #include <iomanip>         //setw(), setfill()
 
 #include "ingredient.h"
-//#include "../sorts/InsertionSort/insertionSort.h"
 #include "recipe.h"
 #include "stringManip.h"   //lowerCase()
 #include "recipeCategory.h"
@@ -334,7 +333,7 @@ void recipeManip()
 	    {
 	       try
 	       {
-	          int index2 = categories[index].find(userInput.substr(3));
+	          int index2 = categories[index].find(userInput.substr(4));
 		  cout << "Category: " << categories[index].getName() << endl;;
                   cout << "index2: " << index2 << endl;
 
@@ -353,6 +352,8 @@ void recipeManip()
 
                errorMessage.clear();
 	       printRecipeVector(shoppingList);
+
+	       cin >> userInput;
 	    }
 	 }
 
