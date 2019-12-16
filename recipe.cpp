@@ -6,7 +6,7 @@
 #include <iomanip>         //setw(), setfill()
 
 #include "ingredient.h"
-#include "../sorts/InsertionSort/insertionSort.h"
+//#include "../sorts/InsertionSort/insertionSort.h"
 #include "recipe.h"
 #include "stringManip.h"   //lowerCase()
 #include "recipeCategory.h"
@@ -45,23 +45,6 @@ Recipe::Recipe(const Recipe & rhs)
 void Recipe::setName(string name)
 {
    this->name = name;
-
-//   int j = 0;
-//   for (int i = 0; i < this->name.size(); i++)
-//   {
-//      if (this->name[i] != ' ')
-//      {
-//         this->name[j++] = this->name[i];
-//
-//	 if (this->name[i - 1] != ' ' && this->name[i] == ' ')
-//	 {
-//            this->name[j++] = ' ';
-//	 }
-//      }
-//   }
-//
-//   if (!name.empty())
-//      this->name.erase(j - 1);
 }
 void Recipe::setTotalCost(double totalCost)
 {
@@ -301,12 +284,21 @@ void printRecipeMenu(vector <RecipeCategory> categories)
 void recipeManip()
 {
    string userInput;
+   string errorMessage;
    vector <RecipeCategory> categories = createRecipeList();
+   vector <Recipe> shoppingList;
 
    while (userInput != "quit")
    {
       system("clear");
       printRecipeMenu(categories);
+
+      cout << endl << endl;
+      if (!errorMessage.empty())
+      {
+         cout << errorMessage << endl << endl;
+      }
+
       cout << "What would you like to do? ";
       getline(cin, userInput);
 
@@ -317,33 +309,64 @@ void recipeManip()
          cout << categories[3].getRecipes()[2];
 //	 printRecipeCategoriesVector(categories);
       }
-      else if (userInput.find("look at") != string::npos)
+      else if (lower.find("look at") != string::npos)
       {
          string temp = userInput.substr(8);
          int index = find(categories, temp);
-	 categories[index].printRecipeNames();
 
-	 cout << endl << endl << "Hit enter to return to the Recipe Menu. ";
-	 cin.get();
+	 while (userInput != "quit")
+	 {
+            system("clear");
+	    categories[index].printRecipeNames();
+      
+            cout << endl << endl;
+            if (!errorMessage.empty())
+            {
+               cout << errorMessage << endl << endl;
+            }
+
+            cout << endl << endl << "What would you like to do? ";
+	    getline(cin, userInput);
+
+	    lower = lowerCase(userInput);
+
+            if (lower.find("add") != string::npos)
+	    {
+	       try
+	       {
+	          int index2 = categories[index].find(userInput.substr(3));
+		  cout << "Category: " << categories[index].getName() << endl;;
+                  cout << "index2: " << index2 << endl;
+
+		  if (index2 < 0)
+		  {
+		     throw "Recipe not found";
+		  }
+
+                  shoppingList.push_back(categories[index].getRecipes()[index2]);
+	       }
+               catch(const char* message)
+	       {
+	          errorMessage = message;
+		  continue;
+	       }
+
+               errorMessage.clear();
+	       printRecipeVector(shoppingList);
+	    }
+	 }
+
+	 errorMessage.clear();
       }
    }
 }
 
 
-void printRecipeVector(vector <Ingredient> ingredients)
+void printRecipeVector(vector <Recipe> recipes)
 {
-   if (ingredients.empty())
+   for (int i = 0; i < recipes.size(); i++)
    {
-      cout << "There are no ingredients." << endl;
-      cout.flush();
-   }
-   else
-   {
-      for (int i = 0; i < ingredients.size(); i++)
-      {
-            cout << ingredients[i];
-      }
-
+      cout << recipes[i];
    }
 }
 
@@ -358,7 +381,7 @@ ostream & operator << (ostream & out, Recipe & rhs)
    out << rhs.getName() << endl << endl;
 
    out << "Ingredients:" << endl << endl;
-   printRecipeVector(rhs.getIngredients());
+   printIngredientVector(rhs.getIngredients());
 
    if (!rhs.getInstructions().empty())
    {
