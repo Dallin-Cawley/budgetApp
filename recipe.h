@@ -59,7 +59,7 @@ std::ostream & operator << (std::ostream & out, Recipe & rhs);
 std::ostream & operator << (std::ostream & out, std::vector <Recipe> & rhs);
 bool operator == (Recipe & lhs, Recipe & rhs);
 
-void printRecipeVector(std::vector <Ingredient> ingredients);
+void printShoppingList(std::vector <Recipe> recipes);
 void recipeManip();
 std::vector <std::string> recipePath();
 Recipe parseFile(std::string filePath);

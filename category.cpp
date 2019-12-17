@@ -22,7 +22,7 @@ void Category::setAmount(double amount)
    this->amount = amount;
 }
 
-Category & Category::operator - (Category & rhs)
+void Category::operator - (Category & rhs)
 {
    this->amount -= rhs.getAmount();
 }

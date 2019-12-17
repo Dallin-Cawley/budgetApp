@@ -1,5 +1,6 @@
 #include "ingredient.h"
 
+#include <vector>
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -104,4 +105,12 @@ std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
 
 }
 
+
+void printIngredientVector(std::vector <Ingredient> ingredients)
+{
+   for (auto it = ingredients.begin(); it != ingredients.end(); ++it)
+   {
+      std::cout << *it;
+   }
+}
 

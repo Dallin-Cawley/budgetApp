@@ -21,7 +21,7 @@ class Category
 
    int numDigits();
    void printCategory(int space = 0, int i = 0);
-   Category & operator - (Category & rhs);
+   void operator - (Category & rhs);
 
    friend std::vector <Category> startUp();
 

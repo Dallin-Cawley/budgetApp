@@ -1,0 +1,6 @@
+﻿  budget.cpp
+C:\Users\lette\source\repos\budgetApp\budget.cpp(204,1): warning C4007: 'WinMain': must be '__stdcall'
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+    Hint on symbols that are defined and could potentially match:
+      _WinMain@0
+C:\Users\lette\source\repos\budgetApp\Debug\budgetApp.exe : fatal error LNK1120: 1 unresolved externals

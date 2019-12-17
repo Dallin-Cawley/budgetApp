@@ -8,7 +8,6 @@
 #include "stringManip.h"
 #include "recipe.h"
 #include "ingredient.h"
-#include "../sorts/InsertionSort/insertionSort.h"
 #include "category.h"
 #include "recipeCategory.h"
 
@@ -186,7 +185,7 @@ void printHelp(int help)
 int find(string item, vector <Category> categories)
 {
    item += " ";
-   for (int i = 0; i < categories.size(); i++)
+   for (size_t i = 0; i < categories.size(); i++)
    {
       if (i >= categories.size())
       {
@@ -210,7 +209,7 @@ int main()
 
    while (userInput != "quit")
    {
-      system("clear");
+      system("CLS");
 
       printBudget(expenseInfo);
       cout << endl;
@@ -338,7 +337,7 @@ int main()
 
 	 fout.open("budgetNumbers.txt");
 
-	 for (int i = 0; i < expenseInfo.size(); i++)
+	 for (size_t i = 0; i < expenseInfo.size(); i++)
 	 {
             fout << expenseInfo[i].getName() << expenseInfo[i].getAmount();
 	    fout << endl;

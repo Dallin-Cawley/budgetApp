@@ -1,10 +1,3 @@
-Recipes/Appetizers/Cheese Ball.txt
-Recipes/Appetizers/Game -Day Guacamole.txt
-Recipes/Appetizers/Hot Artichoke Dip.txt
-Recipes/Appetizers/Jalapeno Deviled Eggs.txt
-Recipes/Appetizers/Kaydene’s Vegetable Dip.txt
-Recipes/Appetizers/Sassy Green Dip.txt
-Recipes/Appetizers/Spinach Dip.txt
 Recipes/Bars and Cookies/Brownies.txt
 Recipes/Bars and Cookies/Butterscotch Brownies.txt
 Recipes/Bars and Cookies/Butterscotch Cookie Bars.txt
@@ -60,7 +53,7 @@ Recipes/Beans, Rice, and Pasta/Olive Garden Alfredo.txt
 Recipes/Beans, Rice, and Pasta/Pasta with Tomatoes, Feta, and Herbs.txt
 Recipes/Beans, Rice, and Pasta/Pepperoni Pizza Snowman Pasta.txt
 Recipes/Beans, Rice, and Pasta/Pesto.txt
-Recipes/Beans, Rice, and Pasta/Popeye’s Red Beans and Rice.txt
+Recipes/Beans, Rice, and Pasta/Popeye_s Red Beans and Rice.txt
 Recipes/Beans, Rice, and Pasta/Refried Beans.txt
 Recipes/Beans, Rice, and Pasta/Sausage Pasta Salad.txt
 Recipes/Beans, Rice, and Pasta/Skinny Beef _ Broccoli Noodles.txt
@@ -96,7 +89,7 @@ Recipes/Breakfast/Crepes.txt
 Recipes/Breakfast/Crispy Potato Quiche.txt
 Recipes/Breakfast/German Pancakes.txt
 Recipes/Breakfast/Grandma_s Cinnamon Rolls.txt
-Recipes/Breakfast/Green Chili Soufflé.txt
+Recipes/Breakfast/Green Chili Souffle.txt
 Recipes/Breakfast/Healthy Pepper Hash.txt
 Recipes/Breakfast/Healthy Pumpkin Muffins Recipe _ Ellie Krieger _ Food Network.txt
 Recipes/Breakfast/Homemade Granola.txt
@@ -256,8 +249,8 @@ Recipes/Misc/Julie_s Playdough.txt
 Recipes/Misc/Poultry Seasoning.txt
 Recipes/Misc/Taco Seasoning Mix.txt
 Recipes/Salads/B.L.T. Pasta.txt
-Recipes/Salads/Blueberry Salad.txt
 Recipes/Salads/Blue Cheese and Artichoke Salad.txt
+Recipes/Salads/Blueberry Salad.txt
 Recipes/Salads/Bowtie Pasta Salad.txt
 Recipes/Salads/Cherry Orange Delight.txt
 Recipes/Salads/Chicken Salad.txt
@@ -282,7 +275,7 @@ Recipes/Snacks/Chex Lemon Buddies.txt
 Recipes/Snacks/Chex Muddy Buddies.txt
 Recipes/Snacks/Fresh Salsa.txt
 Recipes/Snacks/Sugar N Spice Nuts.txt
-Recipes/Snacks/Tami’s Salsa.txt
+Recipes/Snacks/Tami_s Salsa.txt
 Recipes/Snacks/Ultimate Trail Mix.txt
 Recipes/Soups/Beef and Barley Soup.txt
 Recipes/Soups/Carrot and corn chowder.txt
@@ -321,7 +314,7 @@ Recipes/Syrups and Sauces/HOMEMADE BBQ SAUCE RECIPE.txt
 Recipes/Syrups and Sauces/Hot Fudge Sauce.txt
 Recipes/Syrups and Sauces/Mango Chutney.txt
 Recipes/Syrups and Sauces/Marshmallow Caramel Sauce.txt
-Recipes/Syrups and Sauces/Mom’s Buttermilk Dressing.txt
+Recipes/Syrups and Sauces/Mom_s Buttermilk Dressing.txt
 Recipes/Syrups and Sauces/Orange Syrup.txt
 Recipes/Syrups and Sauces/Teriyaki Sauce.txt
 Recipes/Syrups and Sauces/Waffle Syrup.txt

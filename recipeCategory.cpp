@@ -82,17 +82,30 @@ int RecipeCategory::getSize() const
    return size;
 }
 
-Recipe RecipeCategory::find(Recipe item)
+//Recipe RecipeCategory::find(Recipe item)
+//{
+//   for (int i = 0; i < recipes.size(); i++)
+//   {
+//      if (item == recipes[i])
+//      {
+//         return recipes[i];
+//      }
+//   }
+//
+//   return item;
+//}
+
+int RecipeCategory::find(string item)
 {
    for (int i = 0; i < recipes.size(); i++)
    {
-      if (item == recipes[i])
+      if (recipes[i].getName().find(item) != string::npos)
       {
-         return recipes[i];
+         return i;
       }
    }
 
-   return item;
+   return -1;
 }
 
 vector <RecipeCategory> categoryNames(vector <string> filePaths)
