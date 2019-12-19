@@ -193,7 +193,7 @@ Recipe parseFile(string filePath)
          {
             word.clear();
 
-            while (getline(fin, word))  //begin to gether ingredients
+            while (getline(fin, word))  //begin to gather ingredients
 	    {
                Ingredient ingredient;
 
@@ -208,19 +208,14 @@ Recipe parseFile(string filePath)
                      recipe.setInstructions(word);
                   }
                }
-               else if (lower != "ingredients:")
-               {
+               else
+	       {
                   ingredient.setName(word);
-               }
-	       else if (!(ingredient.getName() == " "))
-	       {       
                   recipe.addItem(ingredient);  //Add ingredient to recipe
-	       }       
+	       }
 	    }
          }   //end of Ingredients conditional
-
       }   //end of single recipe loading while loop
-   
    }   //end of initial While Loop
    fin.close();
 
@@ -334,8 +329,6 @@ void recipeManip()
 	       try
 	       {
 	          int index2 = categories[index].find(userInput.substr(4));
-		  cout << "Category: " << categories[index].getName() << endl;;
-                  cout << "index2: " << index2 << endl;
 
 		  if (index2 < 0)
 		  {
@@ -373,7 +366,6 @@ void printRecipeVector(vector <Recipe> recipes)
 
 ostream & operator << (ostream & out, Recipe & rhs)
 {
-   out << "recipe << operator called" << endl;
      
    if (rhs.empty())
    {

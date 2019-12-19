@@ -83,18 +83,7 @@ std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
 {
    if (!ingredient.empty())
    {
-      out << "Quantity: ";
-      out << ingredient.getQuantity() << std::endl;
-   
-      out << "Measurement: ";
-      out << ingredient.getMeasurement() << std::endl;
-   
-      out << "Name: ";
       out << ingredient.getName() << std::endl << std::endl;
-   
-      if (ingredient.getCost() > 0)
-         out << ingredient.getCost();
-      
       return out;
    }
    else
