@@ -3,5 +3,5 @@
 C:\Users\lette\source\repos\budgetApp\recipe.h(45,25): warning C4018: '<': signed/unsigned mismatch
 C:\Users\lette\source\repos\budgetApp\recipe.cpp(122,22): warning C4101: 'message': unreferenced local variable
 C:\Users\lette\source\repos\budgetApp\recipe.cpp(243,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lette\source\repos\budgetApp\recipe.cpp(378,22): warning C4018: '<': signed/unsigned mismatch
-  ConsoleBudgetApp.vcxproj -> C:\Users\lette\Source\Repos\budgetApp\Debug\ConsoleBudgetApp.exe
+C:\Users\lette\source\repos\budgetApp\recipe.cpp(379,22): warning C4018: '<': signed/unsigned mismatch
+  ConsoleBudgetApp.vcxproj -> C:\Users\lette\source\repos\budgetApp\Debug\ConsoleBudgetApp.exe

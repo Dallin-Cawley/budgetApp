@@ -178,15 +178,16 @@ Recipe parseFile(string filePath)
 
    while (!fin.eof()) //Initial reading of the file
    {
-      int i = 0;
-      while (!fin.eof()) //used to gather the name of the recipe
+      int i = 0;   //used to gather the name of the recipe
+      while (!fin.eof()) 
       {
-	 getline(fin, word);
-	 if (i == 0)
-	 {	 
+	     getline(fin, word);
+	     if (i == 0)
+	     {	 
             recipe.setName(word);
-	 }
-	 i++;
+            i++;
+	     }
+
          string lower = lowerCase(word);
 
          if (lower.find("ingredients:") != string::npos)
@@ -194,29 +195,28 @@ Recipe parseFile(string filePath)
             word.clear();
 
             while (getline(fin, word))  //begin to gether ingredients
-	    {
+	        {
                Ingredient ingredient;
 
-	       lower.clear();
+	           lower.clear();
                lower = lowerCase(word);
 
-	       if (lower == "instructions:")
+	           if (lower == "instructions:")
                {
                   while (!fin.eof())  //begin to gather instructions
                   {
-	             getline(fin, word); 
+	                 getline(fin, word); 
                      recipe.setInstructions(word);
                   }
                }
-               else if (lower != "ingredients:")
+               else
                {
                   ingredient.setName(word);
-               }
-	       else if (!(ingredient.getName() == " "))
-	       {       
                   recipe.addItem(ingredient);  //Add ingredient to recipe
-	       }       
-	    }
+               }
+
+      
+	        }
          }   //end of Ingredients conditional
 
       }   //end of single recipe loading while loop
@@ -226,8 +226,6 @@ Recipe parseFile(string filePath)
 
    return recipe;
 }
-
-
 
 void printRecipeMenu(vector <RecipeCategory> categories)
 {
@@ -249,13 +247,13 @@ void printRecipeMenu(vector <RecipeCategory> categories)
       if (i % 2 == 1)
       {
          if (categories[i - 1].getSize() / 10 >= 1)  //column 1 is double digit
-	 {
+	     {
             cout << setw(31) << categories[i] << endl;
-	 }
-	 else                                        //column 1 issingle digit
-	 {
+	     }
+	     else                                        //column 1 is single digit
+	     {
             cout << setw(32) << categories[i] << endl;
-	 }
+	     }
       }
       else
       {
@@ -306,28 +304,27 @@ void recipeManip()
       if (lower == "test")
       {
          cout << categories[3].getRecipes()[2];
-//	 printRecipeCategoriesVector(categories);
       }
       else if (lower.find("look at") != string::npos)
       {
-          int index = 0;
-          try
-          {
-             string temp = userInput.substr(8);
-             index = find(categories, temp);
-             if (index < 0)
-             {
-                 throw "Category not found";
-             }
-          }
-          catch (const char* message)
-          {
-              errorMessage = message;
-              continue;
-          }
+         int index = 0;
+         try
+         {
+            string temp = userInput.substr(8);
+            index = find(categories, temp);
+            if (index < 0)
+            {
+                throw "Category not found";
+            }
+         }
+         catch (const char* message)
+         {
+             errorMessage = message;
+             continue;
+         }
 
-          errorMessage.clear();
-	     while (userInput != "quit")
+         errorMessage.clear();
+	     while (userInput != "back")
 	     {
             system("cls");
 	        categories[index].printRecipeNames();
@@ -354,6 +351,8 @@ void recipeManip()
 		          }
 
                   shoppingList.push_back(categories[index].getRecipes()[index2]);
+                  cout << categories[index].getRecipes()[index2] << endl;
+                  cin.get();
 	           }
                catch(const char* message)
 	           {
