@@ -12,7 +12,7 @@ using namespace std;
  ****************************************************/
 string lowerCase(string userInput)
 {
-   for (int i = 0; i < userInput.size(); i++)
+   for (size_t i = 0; i < userInput.size(); i++)
    {
       userInput[i] = tolower(userInput[i]);
    }

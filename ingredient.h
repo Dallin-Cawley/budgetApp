@@ -27,7 +27,7 @@ class Ingredient
 
    bool empty();
 
-   Ingredient & operator=(Ingredient & rhs)
+   void operator=(Ingredient & rhs)
    {
       this->quantity    = rhs.getQuantity();
       this->name        = rhs.getName();

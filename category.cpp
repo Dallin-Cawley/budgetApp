@@ -43,7 +43,7 @@ int Category::numDigits()
 
    int digitsBeforeDecimal = 0;
 
-   for (int i = 0; i < digits.size(); i++)
+   for (size_t i = 0; i < digits.size(); i++)
    {
       if (digits[i] != '.')
       {
@@ -55,11 +55,11 @@ int Category::numDigits()
       }
    }
 
-   int digitsAfterDecimal = 0;
+   size_t digitsAfterDecimal = 0;
 
    if (digitsBeforeDecimal < digits.size())
    {
-      for (int i = digitsBeforeDecimal + 1; i < digits.size(); i++)
+      for (size_t i = digitsBeforeDecimal + 1; i < digits.size(); i++)
       {
          if (digits[i] != '0')
 	 {

@@ -9,6 +9,7 @@
 #include "recipe.h"
 #include "stringManip.h"   //lowerCase()
 #include "recipeCategory.h"
+#include "shoppingList.h"
 
 using namespace std;
 
@@ -110,36 +111,30 @@ vector <string> recipePath()
 {
 
    ifstream fin;
-   try
+ 
+
+   fin.open("recipe_filePath.txt");
+
+   if (fin.fail())
    {
-      fin.open("recipe_filePath.txt");
+       system("bash recipe_fileNames.sh");
+       int i = 0;
+       while (i < 5 && fin.fail())
+       {
+           fin.clear();
+           fin.open("recipe_filePath.txt");
 
-      if (fin.fail())
-      {
-         throw "Unable to open 'recipe_path.txt'";
-      }
-   }
-   catch(const char* message)
-   {
-      system("bash recipe_fileNames.sh");
-      int i = 0;
-      while(i < 5 && fin.fail())
-      {
-         fin.clear();
-	 fin.open("recipe_filePath.txt");
+           if (fin.fail())
+           {
+               system("bash recipe_fileNames.sh");
+           }
+           i++;
+       }
 
-	 if (fin.fail())
-	 {
-	    system("bash recipe_fileNames.sh");
-	 }
-	 i++;
-      }
-
-      if (fin.fail())
-      {
-         cout << "bash recipe_fileName.sh failure" << endl;
-      }
-
+       if (fin.fail())
+       {
+           cout << "bash recipe_fileName.sh failure" << endl;
+       }
    }
 
    vector <string> fileNames;
@@ -229,40 +224,90 @@ Recipe parseFile(string filePath)
 
 void printRecipeMenu(vector <RecipeCategory> categories)
 {
-   cout << setfill('*') << setw(80) << "*" << endl
-        << setfill(' ') << setw(47) <<  "Recipe Menu " << endl
-        << setfill('*') << setw(80) << "*" << endl;
-   cout << setfill(' ');
+    cout << setfill('*') << setw(120) << "*" << endl
+        << setfill(' ') << setw(66) << "Recipe Menu " << endl
+        << setfill('*') << setw(120) << "*" << endl;
+    cout << setfill(' ');
 
 
-   //Begin printing the categories in this format....
-   //     "Category Name" ("Category Size")
-   //           eg. Appetizers (9)
-   for (int i = 0; i < categories.size(); i++)
-   {
-      if (categories[i].getName().empty())
-      {
-         continue;
-      }
-      if (i % 2 == 1)
-      {
-         if (categories[i - 1].getSize() / 10 >= 1)  //column 1 is double digit
-	     {
-            cout << setw(31) << categories[i] << endl;
-	     }
-	     else                                        //column 1 is single digit
-	     {
-            cout << setw(32) << categories[i] << endl;
-	     }
-      }
-      else
-      {
-         cout << setw(25) << categories[i];
-      }
-   }
+    //Begin printing the categories in this format....
+    //     "Category Name" ("Category Size")
+    //           eg. Appetizers (9)
+
+    int j = 1;
+    for (size_t i = 0; i < categories.size(); i++)
+    {
+        if (categories[i].getName().empty())
+        {
+            continue;
+        }
+        if (j % 2 == 1)
+        {
+            if ((i + 1) % 3 == 0)
+            {
+                if (categories[i - 1].getSize() / 10 >= 1)  //column 2 is double digit
+                {
+                    cout << setw(31) << categories[i] << endl;
+                }
+                else                                        //column 2 is single digit
+                {
+                    cout << setw(32) << categories[i] << endl;
+                }
+                j++;
+            }
+            else if ((i + 1) % 2 == 0) //Note to self: On second iteration, column one had an (i + 1) = 4. This 'else if' runs on the first column every other iteration.
+            {
+                if (categories[i - 1].getSize() / 10 >= 1)  //column 1 is double digit
+                {
+                    cout << setw(31) << categories[i];
+                }
+                else                                        //column 1 is single digit
+                {
+                    cout << setw(32) << categories[i];
+                }
+            }
+            else
+            {
+                cout << setw(25) << categories[i];
+            }
+        }
+        else
+        {
+            if ((i + 1) % 3 == 0)
+            {
+                if (categories[i - 1].getSize() / 10 >= 1)  //column 2 is double digit
+                {
+                    cout << setw(31) << categories[i] << endl;
+                }
+                else                                        //column 2 is single digit
+                {
+                    cout << setw(32) << categories[i] << endl;
+                }
+                j++;
+            }
+            else if ((i + 1) % 2 == 1)
+            {
+                if (categories[i - 1].getSize() / 10 >= 1)  //column 1 is double digit
+                {
+                    cout << setw(31) << categories[i];
+                }
+                else                                        //column 1 is single digit
+                {
+                    cout << setw(32) << categories[i];
+                }
+            }
+            else
+            {
+                cout << setw(25) << categories[i];
+            }
+        }
+    }
 
    cout << endl << endl;
 
+   cout << "Type any of these commands to interact with the menu." << endl;
+
+   cout << "  Look at <insert category> - Lists the names of all the recipes in that category." << endl;
    
 }
 
@@ -283,7 +328,7 @@ void recipeManip()
    string userInput;
    string errorMessage;
    vector <RecipeCategory> categories = createRecipeList();
-   vector <Recipe> shoppingList;
+   ShoppingList shoppingList;
 
    while (userInput != "quit")
    {
@@ -342,17 +387,18 @@ void recipeManip()
 
             if (lower.find("add") != string::npos)
 	        {
+                cout << "Before try statement" << endl;
 	           try
 	           {
-	              int index2 = categories[index].find(userInput.substr(4));
+	              int index2 = categories[index].find(userInput.substr(4));   //finds the index of the user inputed Recipe in the RecipeCategory object
+
 		          if (index2 < 0)
 		          {
 		             throw "Recipe not found";
 		          }
 
-                  shoppingList.push_back(categories[index].getRecipes()[index2]);
-                  cout << categories[index].getRecipes()[index2] << endl;
-                  cin.get();
+                  cout << "Before addItems." << endl;
+                  shoppingList.addItems(categories[index].getRecipes()[index2]);
 	           }
                catch(const char* message)
 	           {
@@ -361,9 +407,9 @@ void recipeManip()
 		       }
 
                errorMessage.clear();
-	           printShoppingList(shoppingList);
-
-	           cin >> userInput;
+               cout << "Before printing Shopping List." << endl;
+	           cout << shoppingList;
+               cin.get();
 	        }
 	     }
          errorMessage.clear();
@@ -374,7 +420,7 @@ void recipeManip()
 
 void printShoppingList(vector <Recipe> recipes)
 {
-   for (int i = 0; i < recipes.size(); i++)
+   for (size_t i = 0; i < recipes.size(); i++)
    {
       cout << i + 1 << ": ";
       cout << recipes[i].getName() << endl;
@@ -383,8 +429,6 @@ void printShoppingList(vector <Recipe> recipes)
 
 ostream & operator << (ostream & out, Recipe & rhs)
 {
-   out << "recipe << operator called" << endl;
-     
    if (rhs.empty())
    {
       return out;

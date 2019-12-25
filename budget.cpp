@@ -104,9 +104,9 @@ vector <Category> startUp()
  ****************************************************/
 void printBudget(vector <Category> expenseInfo)
 {
-   cout << setfill('*') << setw(80) << "*" << endl
-        << setfill(' ') << setw(47) <<  "Current Budget: " << endl
-        << setfill('*') << setw(80) << "*" << endl;
+   cout << setfill('*') << setw(120) << "*" << endl
+        << setfill(' ') << setw(67) <<  "Current Budget: " << endl
+        << setfill('*') << setw(120) << "*" << endl;
    cout << setfill(' ');
 
    Category leftOver;
@@ -235,115 +235,115 @@ int main()
 
       if (userInput == "manage categories")      //Add or delete a category.
       {
-	 inputErrorMessage.clear();
-         system("clear");
-	 printBudget(expenseInfo);
-	 cout << endl;
-	 printHelp(2);
-	 cout << endl << endl;
+	     inputErrorMessage.clear();
+         system("CLS");
+	     printBudget(expenseInfo);
+	     cout << endl;
+	     printHelp(2);
+	     cout << endl << endl;
 
-	 string userInput;
-	 cout << "What would you like to do? ";
+	     string userInput;
+	     cout << "What would you like to do? ";
          getline(cin, userInput);
 
-	 userInput = lowerCase(userInput);
+	     userInput = lowerCase(userInput);
 
-	 string userInputFront = lowerCase(userInput.substr(0, 3));
-	 string userInputBack = lowerCase(userInput.substr(3));
-	 string userInputBackU = userInput.substr(3);
+	     string userInputFront = lowerCase(userInput.substr(0, 3));
+	     string userInputBack = lowerCase(userInput.substr(3));
+	     string userInputBackU = userInput.substr(3);
 
 
-	 if (userInputFront == "add")
+	     if (userInputFront == "add")
          {
             Category cTemp;
 
-	    cTemp.setName(userInputBackU);
+	        cTemp.setName(userInputBackU);
 
-	    cout << "How much will be spent in this Category? ";
-	    double dTemp;
-	    cin >> dTemp;
-	    cTemp.setAmount(dTemp);
+	        cout << "How much will be spent in this Category? ";
+	        double dTemp;
+	        cin >> dTemp;
+	        cTemp.setAmount(dTemp);
 
-	    expenseInfo.push_back(cTemp);
-	 }   //end of add condition
-	 else if (userInputFront == "del")
-	 {
+	        expenseInfo.push_back(cTemp);
+	     }   //end of add condition
+	     else if (userInputFront == "del")
+	     {
             userInputBack.erase(0, 4);
 
-	    int index = find(userInputBack, expenseInfo);
+	        int index = find(userInputBack, expenseInfo);
             vector <Category>::iterator vit = expenseInfo.begin();
 	    
-	    //Moves the iterator to desired Category for deletion
-	    for(int i = 0; i <= index; ++vit, i++)
-	    {
-	       if (index == 0)
-	       {
-	          break;
-	       }
-	    }
+	        //Moves the iterator to desired Category for deletion
+	        for(int i = 0; i <= index; ++vit, i++)
+	        {
+	           if (index == 0)
+	           { 
+	              break;
+	           }
+	        }
 
             expenseInfo.erase(vit);
-	 }   //end of delete condition
-	 else if (userInputFront == "mod")
-	 {
+	     }   //end of delete condition
+	     else if (userInputFront == "mod")
+	     {
             userInputBack.erase(0, 4);
             userInputBack = lowerCase(userInputBack);
 
-	    int index = find(userInputBack, expenseInfo);
+	        int index = find(userInputBack, expenseInfo);
 
             cout << "What is the new name of the Category? ";
-	    string nTemp;
-	    getline(cin, nTemp);
+	        string nTemp;
+	        getline(cin, nTemp);
 
-	    expenseInfo[index].setName(nTemp);
-	 }   //end of modify condition
+	        expenseInfo[index].setName(nTemp);
+	     }   //end of modify condition
       }
       else if(sTemp == "change")                  //Change the category expense
       {                                          //amount.
          int index = 0;
 
-	 try
-	 {
-	    sTemp = userInput.substr(7);
+	     try
+	     {
+	        sTemp = userInput.substr(7);
 
-	    if (sTemp.empty())
-	    {
+	        if (sTemp.empty())
+	        {
                throw "Passed string is empty. Try again";
-	    }
+	        }
 
-	    index = find(sTemp, expenseInfo);
-	    if (index < 0)
-	    {
-	       throw "Category not found. Try again.";
-   	    }
-	 }
-   	 catch (const char* message)
-	 {
+	        index = find(sTemp, expenseInfo);
+	        if (index < 0)
+	        {
+	           throw "Category not found. Try again.";
+   	        }
+	     }
+   	     catch (const char* message)
+	     {
             inputErrorMessage = message;
-	    continue;
-	 }
+	        continue;
+	     }
 
-	 inputErrorMessage.clear();
+	     inputErrorMessage.clear();
 
-	 cout << "What is the new dollar amount? ";
-	 double dTemp;
+	     cout << "What is the new dollar amount? ";
+	     double dTemp;
          cin >> dTemp;
-	 expenseInfo[index].setAmount(dTemp);
+	     expenseInfo[index].setAmount(dTemp);
 
       }
       else if (sTemp == "quit")
       {
          ofstream fout;
 
-	 fout.open("budgetNumbers.txt");
+	     fout.open("budgetNumbers.txt");
 
-	 for (size_t i = 0; i < expenseInfo.size(); i++)
-	 {
+	     for (size_t i = 0; i < expenseInfo.size(); i++)
+	     {
             fout << expenseInfo[i].getName() << expenseInfo[i].getAmount();
-	    fout << endl;
-	 }
+	        fout << endl;
+	     }
 
-	 fout.close();
+	     fout.close();
       }
       else if (userInput == "recipes")
       {

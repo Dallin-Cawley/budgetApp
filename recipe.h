@@ -5,7 +5,6 @@
 
 #include <string>
 #include <vector>
-#include <list>
 
 class Recipe
 {
@@ -42,7 +41,7 @@ class Recipe
       if (!rhs.getInstructions().empty())
          this->instructions = rhs.getInstructions();
    
-      for (int i = 0; i < rhs.getIngredients().size(); i++)
+      for (size_t i = 0; i < rhs.getIngredients().size(); i++)
       {
          this->ingredients.push_back(rhs.getIngredients()[i]);
       }

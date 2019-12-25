@@ -103,6 +103,7 @@
     <ClCompile Include="ingredient.cpp" />
     <ClCompile Include="recipe.cpp" />
     <ClCompile Include="recipeCategory.cpp" />
+    <ClCompile Include="shoppingList.cpp" />
     <ClCompile Include="stringManip.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +111,7 @@
     <ClInclude Include="ingredient.h" />
     <ClInclude Include="recipe.h" />
     <ClInclude Include="recipeCategory.h" />
+    <ClInclude Include="shoppingList.h" />
     <ClInclude Include="stringManip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
