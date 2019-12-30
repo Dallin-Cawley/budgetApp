@@ -12,6 +12,8 @@ class Ingredient
    double cost;
    std::string measurement;
 
+   std::string measureConvert(std::string measurement);
+
    public:
    Ingredient();
 

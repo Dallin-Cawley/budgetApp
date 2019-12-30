@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 #include "recipe.h"
 #include "ingredient.h"
@@ -8,20 +9,15 @@
 class ShoppingList
 {
 private:
-	Ingredient * items;
+	std::vector <Ingredient> items;
 	int numItems;
 	int capacity;
 
 public:
 	ShoppingList();
-	~ShoppingList();
 
-	int size();
-	bool empty();
-
+	std::vector <Ingredient> getItems();
 	void addItems(Recipe recipe);
-
-	void resize();
 
 	friend std::ostream& operator << (std::ostream& out, ShoppingList shoppingList);
 };

@@ -5,6 +5,54 @@
 #include <iostream>
 #include <sstream>
 
+/******************************************************************************
+   measureConvert()
+*******************************************************************************
+   Parameters:
+   string measurement
+
+   Returns:
+   The converted string measurement.
+
+   The function is intended to normalize the measurements people put into
+   recipes in their various forms.
+
+   EG.
+   tsp -> teaspoon
+ *****************************************************************************/
+std::string Ingredient::measureConvert(std::string measurement)
+{
+    if (measurement.find("cup") != std::string::npos)
+    {
+        return "cup";
+    }
+    else if (measurement.find("t.") != std::string::npos || measurement.find("tea") != std::string::npos
+          || measurement.find("Tea") != std::string::npos || measurement.find("tsp") != std::string::npos)
+    {
+        return "teaspoon";
+    }
+    else if (measurement.find("T") != std::string::npos || measurement.find("table") != std::string::npos
+          || measurement.find("Table") != std::string::npos)
+    {
+        return "tablespoon";
+    }
+    else if (measurement.find("oz") != std::string::npos || measurement.find("Oz") != std::string::npos)
+    {
+        return "oz";
+    }
+    else if (measurement.find("egg") != std::string::npos || measurement.find("Egg") != std::string::npos)
+    {
+        return "egg";
+    }
+    else
+    {
+        return measurement;
+    }
+}
+
+/*
+Basic Constructor
+*/
 Ingredient::Ingredient()
 {
    quantity = 0;
@@ -19,9 +67,27 @@ void Ingredient::setQuantity(double quantity)
    this->quantity = quantity;
 }
 
+/******************************************************************************
+   setName()
+*******************************************************************************
+
+   Parameters:
+   string name.
+
+   Returns:
+   Nothing.
+
+   This function sets the name of the Ingredient while also setting the
+   quantity and sets the measurement through the call of measureConvert() and
+   setMeasurement().
+
+   The way the recipes are set up includes the quantity, measurement, and the name
+   of the ingredient in that order. This function requires the format of....
+
+   [Quantity] [Measurement] [Name].
+******************************************************************************/
 void Ingredient::setName(std::string name)
 {
-   this->name = name;
 
    double quantity = 0;
 
@@ -34,7 +100,17 @@ void Ingredient::setName(std::string name)
 
    std::string measurement;
    ss >> measurement;
-   setMeasurement(measurement);
+   setMeasurement(measureConvert(measurement));
+
+   std::string temp;
+
+   while (ss >> temp) 
+   {
+       this->name += temp;
+       this->name += " ";
+
+       this->name.erase(this->name.end());
+   }
 }
 
 void Ingredient::setCost(double cost)
@@ -53,7 +129,7 @@ void Ingredient::setMeasurement(std::string measurement)
 
 std::string Ingredient::getMeasurement()
 {
-   return measurement;
+      return measurement;
 }
 
 double Ingredient::getQuantity()
@@ -79,6 +155,9 @@ bool Ingredient::empty()
       return false;
 }
 
+/*
+<< Operator used for debugging only.
+*/
 std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
 {
    if (!ingredient.empty())
@@ -105,7 +184,9 @@ std::ostream & operator << (std::ostream & out, Ingredient & ingredient)
 
 }
 
-
+/*
+Prints a vector of Ingredients. Used for debugging.
+*/
 void printIngredientVector(std::vector <Ingredient> ingredients)
 {
    for (auto it = ingredients.begin(); it != ingredients.end(); ++it)

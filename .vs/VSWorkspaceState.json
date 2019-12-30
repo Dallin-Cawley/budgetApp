@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Recipes",
+    "\\Recipes\\Breads and Rolls"
   ],
-  "SelectedNode": "\\recipe.cpp",
+  "SelectedNode": "\\Recipes\\Breads and Rolls\\Carrot Bread.txt",
   "PreviewInSolutionExplorer": false
 }

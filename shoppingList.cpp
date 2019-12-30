@@ -1,34 +1,32 @@
 #include "shoppingList.h"
+#include "stringManip.h"
 
 ShoppingList::ShoppingList()
 {
-    items = new Ingredient[1];
     numItems = 0;
     capacity = 1;
 }
 
-ShoppingList::~ShoppingList()
+std::vector<Ingredient> ShoppingList::getItems()
 {
-    delete[] items;
+    return items;
 }
 
-int ShoppingList::size()
-{
-    return numItems;
-}
 
-bool ShoppingList::empty()
-{
-    if (numItems > 0)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-}
+/******************************************************************************
+   addItems()
+*******************************************************************************
 
+   Parameters:
+   A Recipe object who's ingredients need to be added to the Shopping List.
+
+   Returns:
+   None.
+
+   The function adds ingredients to the Shopping List. If the ingredient in
+   question already exists, the quantity of that ingredient is added to the
+   already existing ingredient.
+******************************************************************************/
 void ShoppingList::addItems(Recipe recipe)
 {
     if (recipe.getIngredients().empty())
@@ -39,67 +37,51 @@ void ShoppingList::addItems(Recipe recipe)
     int k = 0;
     for (size_t i = 0; i < recipe.getIngredients().size(); i++)
     {
-        if (numItems == capacity)
-        {
-            resize();
-        }
-
-        std::cout << "Before for Loop." << std::endl;
-        for (int j = 0; j < numItems; j++)
-        {
-            std::cout << "Begin For Loop: " << j << std::endl;
-            if (items[j].getMeasurement() == recipe.getIngredients()[i].getMeasurement())
+       for (int j = 0; j < numItems; j++)
+       {
+            if ((!items[j].getMeasurement().empty()) && (!recipe.getIngredients()[i].getMeasurement().empty()))
             {
-                std::cout << "Inside If Statement." << std::endl;
-                items[j].setQuantity(items[j].getQuantity() + recipe.getIngredients()[i].getQuantity());
-                k = 1;
-                break;
+                  if (items[j].getMeasurement() == recipe.getIngredients()[i].getMeasurement()
+                      && lowerCase(items[j].getName()) == lowerCase(recipe.getIngredients()[i].getName()))   //If ingredient already exists,
+                  {                                                                                          //add to already existing.
+                     items[j].setQuantity(items[j].getQuantity() + recipe.getIngredients()[i].getQuantity());
+                     k = 1;
+                     break;
+                  }
             }
-        }
+       }
 
-        if (k == 1)
+        if (k == 1)   //Ingredient was added to a previously known ingredient in vector. No need to add another instance.
         {
             k = 0;
             continue;
         }
         else
         {
-            if (numItems == 0)
+            if (numItems == 0 && (!recipe.getIngredients()[i].getMeasurement().empty()))
             {
-                items[0] = recipe.getIngredients()[i];
-                numItems++;
+               items.push_back(recipe.getIngredients()[i]);
+               numItems++;
             }
-            else
+            else if (numItems != 0 && (!recipe.getIngredients()[i].getMeasurement().empty()))
             {
-               std::cout << "numitems != 0" << std::endl;
-               items[numItems - 1] = recipe.getIngredients()[i];
+               items.push_back(recipe.getIngredients()[i]);
                numItems++;
             }
         }
     }
 }
 
-void ShoppingList::resize()
-{
-    std::cout << "Inside Resize Function." << std::endl;
-    Ingredient* temp = new Ingredient[capacity * 2];
-
-    for (int i = 0; i < numItems; i++)
-    {
-        temp[i] = items[i];
-    }
-
-    capacity *= 2;
-    delete[] items;
-    items = temp;
-}
-
+/*
+Prints the Shopping List.
+*/
 std::ostream& operator<<(std::ostream& out, ShoppingList shoppingList)
 {
-    for (int i = 0; i < shoppingList.size(); i++)
+    for (size_t i = 0; i < shoppingList.getItems().size(); i++)
     {
         out << shoppingList.items[i].getQuantity() << " " 
-            << shoppingList.items[i].getMeasurement() << std::endl;
+            << shoppingList.items[i].getMeasurement() << " "
+            << shoppingList.items[i].getName() << std::endl;
     }
 
     return out;

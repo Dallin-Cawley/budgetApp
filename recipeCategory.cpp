@@ -20,6 +20,9 @@ RecipeCategory::RecipeCategory(const RecipeCategory &rhs)
    this->recipes = rhs.getRecipes();
 }
 
+/*
+Using the file path, we extrapolate the category name by removing all '/' and '\' characters.
+*/
 void RecipeCategory::setName(std::string path)
 {
    int j = 0;
@@ -29,7 +32,7 @@ void RecipeCategory::setName(std::string path)
       if (path[i] == '/')
       {
          j++;
-	 continue;
+	     continue;
       }
       else if (path[i] == '\'')
       {
@@ -53,6 +56,20 @@ void RecipeCategory::addRecipe(Recipe item)
    size++;
 }
 
+/******************************************************************************
+   printRecipeNames()
+*******************************************************************************
+
+   Parameters:
+   None:
+
+   Returns:
+   None.
+
+   Prints the category's recipes in this format.
+
+   [Category Name] (number of recipes)
+******************************************************************************/
 void RecipeCategory::printRecipeNames()
 {
    size_t spaces = 0;
@@ -65,7 +82,7 @@ void RecipeCategory::printRecipeNames()
       }
    }
 
-   int middle = (60 + (name.size() / 2));
+   int middle = (60 + (name.size() / 2));   //This is the position of the middle character in the name in the middle of the cmd window.
 
    cout << setw(120) << setfill('*') << '*' << endl;
    cout << setw(middle) << setfill(' ') << name << endl;
@@ -119,6 +136,24 @@ int RecipeCategory::find(string item)
    return -1;
 }
 
+/******************************************************************************
+   categoryNames()
+*******************************************************************************
+
+   Parameters:
+   A vector of the filePaths needed to extrapolate the Category names.
+   (The category names are the folder that holds all the recipes)
+
+   Appetizers  <------ Category
+       |
+       --> Cheese Curds  <------Recipe
+
+   Returns:
+   A vector containing all the Category Names.
+
+   This function extrapolates the Category names from the filePath's string and
+   returns a vector contaning the Category names.
+******************************************************************************/
 vector <RecipeCategory> categoryNames(vector <string> filePaths)
 {
    vector <RecipeCategory> categories;
@@ -126,7 +161,7 @@ vector <RecipeCategory> categoryNames(vector <string> filePaths)
    rc.setName(filePaths[0]);
    categories.push_back(rc);
 
-   int cTemp = 0;
+   int cTemp = 0;   //used to keep track of the index for 'categories'
    for (size_t i = 0; i < filePaths.size(); i++)
    {
       RecipeCategory rc;
@@ -135,7 +170,7 @@ vector <RecipeCategory> categoryNames(vector <string> filePaths)
       if (rc.getName() != categories[cTemp].getName())
       {
          RecipeCategory temp;
-	 temp.setName(filePaths[i]);
+	     temp.setName(filePaths[i]);
          categories.push_back(temp);
          cTemp++;
       }
@@ -144,6 +179,19 @@ vector <RecipeCategory> categoryNames(vector <string> filePaths)
    return categories;
 }
 
+/******************************************************************************
+   createRecipeList()
+*******************************************************************************
+
+   Parameters:
+   None.
+
+   Returns:
+   A vector containing the Category objects loaded with all the recipes.
+
+   Utilizing recipePath() and categoryNames(), this function creats a 
+   vector containing recipe filled RecipeCategory objects.
+******************************************************************************/
 vector <RecipeCategory> createRecipeList()
 {
    vector <string> filePath = recipePath();
@@ -153,14 +201,14 @@ vector <RecipeCategory> createRecipeList()
    {
       for (size_t j = 0; j < rCategories.size(); j++)
       {
-	 RecipeCategory rc;
-	 rc.setName(filePath[i]);
+	     RecipeCategory rc;
+	     rc.setName(filePath[i]);
 
-         if (rc.getName() == rCategories[j].getName())
-	 {
-	    rCategories[j].addRecipe(parseFile(filePath[i]));
-	    break;
-	 }
+         if (rc.getName() == rCategories[j].getName())  //Determines if the current recipe belongs in this Category.
+	     {
+	        rCategories[j].addRecipe(parseFile(filePath[i])); //Adds the recipe in question into the correct RecipeCategory.
+	        break;
+	     }
       }
    }
 

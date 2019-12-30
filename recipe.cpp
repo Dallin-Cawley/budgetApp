@@ -46,6 +46,7 @@ void Recipe::setName(string name)
 {
    this->name = name;
 }
+
 void Recipe::setTotalCost(double totalCost)
 {
    this->totalCost = totalCost;
@@ -107,6 +108,24 @@ bool Recipe::empty()
  * Other necessary Functions
  **************************/
 
+/******************************************************************************
+   recipePath()
+*******************************************************************************
+
+    Parameters:
+    None.
+
+    Returns:
+    A vector of strings containing the file paths of all recipes.
+
+    Originally this program was developed on a linux machine. The recovery
+    of the program when "recipe_filePath.txt" doesn't exist requires a working
+    bash command. If successful, the bash script will create a .txt file
+    containing the file paths of the recipes.
+
+    if the ifstream finds the file, it reads in the file paths from
+    "recipe_filePath.txt" and returns the vector of strings.
+******************************************************************************/
 vector <string> recipePath()
 {
 
@@ -150,6 +169,19 @@ vector <string> recipePath()
    return fileNames;
 }
 
+/******************************************************************************
+   parseFile()
+*******************************************************************************
+
+   Parameters:
+   string filePath
+
+   Returns:
+   A constructed recipe object
+
+   parseFile() opens the passed filePath and reads in all necessary recipe
+   information into the recipe object and returns it.
+******************************************************************************/
 Recipe parseFile(string filePath)
 {
    ifstream fin;
@@ -222,6 +254,20 @@ Recipe parseFile(string filePath)
    return recipe;
 }
 
+/******************************************************************************
+   printRecipeMenu()
+*******************************************************************************
+
+   Parameters:
+   None.
+
+   Returns:
+   None.
+
+   printRecipeMenu() prints the menu for the user to interact with.
+   All recipe categories are printed and instructions for how to interact with
+   the program.
+*******************************************************************************/
 void printRecipeMenu(vector <RecipeCategory> categories)
 {
     cout << setfill('*') << setw(120) << "*" << endl
@@ -387,7 +433,6 @@ void recipeManip()
 
             if (lower.find("add") != string::npos)
 	        {
-                cout << "Before try statement" << endl;
 	           try
 	           {
 	              int index2 = categories[index].find(userInput.substr(4));   //finds the index of the user inputed Recipe in the RecipeCategory object
@@ -397,7 +442,6 @@ void recipeManip()
 		             throw "Recipe not found";
 		          }
 
-                  cout << "Before addItems." << endl;
                   shoppingList.addItems(categories[index].getRecipes()[index2]);
 	           }
                catch(const char* message)
@@ -407,7 +451,7 @@ void recipeManip()
 		       }
 
                errorMessage.clear();
-               cout << "Before printing Shopping List." << endl;
+
 	           cout << shoppingList;
                cin.get();
 	        }
@@ -418,15 +462,9 @@ void recipeManip()
 }
 
 
-void printShoppingList(vector <Recipe> recipes)
-{
-   for (size_t i = 0; i < recipes.size(); i++)
-   {
-      cout << i + 1 << ": ";
-      cout << recipes[i].getName() << endl;
-   }
-}
-
+/*
+Prints a Recipe object. Used for debugging.
+*/
 ostream & operator << (ostream & out, Recipe & rhs)
 {
    if (rhs.empty())
@@ -454,6 +492,9 @@ ostream & operator << (ostream & out, Recipe & rhs)
    return out;
 }
 
+/*
+Prints a vector of Recipes. Used for debugging.
+*/
 ostream & operator << (ostream & out, vector <Recipe> & rhs)
 {
    for (auto it = rhs.begin(); it != rhs.end(); ++it)
