@@ -106,6 +106,13 @@ void RecipeCategory::printRecipeNames()
       }
 
    }
+
+   cout << endl << endl;
+
+   cout << "Type any of these commands to interact with the menu:" << endl;
+   cout << "  Add <Recipe Name>   - Adds recipe to your Shopping List." << endl;
+   cout << "  Show                - Shows you the current ingredients on your Shopping List." << endl;
+   cout << "  Back                - Returns you to the previous menu. " << endl;
 }
 
 std::string RecipeCategory::getName() const

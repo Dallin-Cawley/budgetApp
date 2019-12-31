@@ -451,10 +451,17 @@ void recipeManip()
 		       }
 
                errorMessage.clear();
-
-	           cout << shoppingList;
-               cin.get();
 	        }
+            else if (lower.find("show") != string::npos)
+            {
+                system("CLS");
+                cout << endl << endl <<"SHOPPING LIST:" << endl;
+                cout << shoppingList << endl;
+                
+
+                cout << "Press ENTER to return to previous menu.";
+                cin.get();
+            }
 	     }
          errorMessage.clear();
       }
