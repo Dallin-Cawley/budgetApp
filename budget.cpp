@@ -13,6 +13,12 @@
 
 using namespace std;
 
+struct googleSheetCategories
+{
+    string name;
+    double total;
+};
+
 /*****************************************************
  * File-Doesnt-Exist
  * returns whether or not the necessary start-up files
@@ -50,11 +56,11 @@ vector <Category> startUp()
       cout << "File created" << endl;
 
       writeToFile << "1 Monthly Income 0" << endl
-	          << "2 Housing Cost 0" << endl
+	              << "2 Housing Cost 0" << endl
                   << "3 Power 0" << endl
-		  << "4 Gas 0" << endl
-		  << "5 Automotive 0" << endl
-		  << "6 Personal Expenses 0" << endl;
+		          << "4 Gas 0" << endl
+		          << "5 Automotive 0" << endl
+		          << "6 Personal Expenses 0" << endl;
    }
 
    //Parse start-up file for previous money values
@@ -73,27 +79,113 @@ vector <Category> startUp()
       while (fromFile >> word)
       {
          stringstream toCategory;
-	 toCategory << word;
-	 if (toCategory >> temp.amount)
-	 {
-		 i++;
-		 cout << i << endl;
+	     toCategory << word;
+	     if (toCategory >> temp.amount)
+	     {
+		    i++;
             expenseInfo.push_back(temp);
-	    toCategory.clear();
-	    break;
-	 }
-	 else
-	 {
-	    temp.name += word;
-	    temp.name += ' ';
-	 }
+	        toCategory.clear();
+	        break;
+	     }
+	     else
+	     {
+	        temp.name += word;
+	        temp.name += ' ';
+	     }
 
-	 toCategory.clear();
+	     toCategory.clear();
       }
    }
 
    return expenseInfo;
 } //end of startUp()
+
+vector <googleSheetCategories> googleSheetStartUp()
+{
+    cout << "Connecting to Google Sheet...." << endl;
+    system("python \"../../Users/lette/PycharmProjects/GoogleAPI interact/GoogleAPI Interact.py\" Start-up");
+
+    ifstream file("googleSheet.txt");
+
+    int i = 0;
+    while (file.fail())
+    { 
+        cout << "Unable to open googleSheet.txt" << endl;
+
+        file.open("googleSheet.txt");
+
+        i++;
+
+        if (i == 5)
+        {
+            cout << "Was unable to open googleSheet.txt after " << i << " tries." << endl;
+            cin.get();
+            vector <googleSheetCategories> gsCategories;
+            return gsCategories;
+        }
+    }
+
+    string word;
+    vector <googleSheetCategories> gsCategories;
+
+    i = 0;
+    while (file >> word)
+    {
+        if (i == 8) //We have reached the end of the first line.
+        {           //The first line is just the names.
+            break;
+        }
+
+        googleSheetCategories temp;
+        while(word != "e_cell")
+        {
+            temp.name += word;
+            temp.name += ' ';
+            file >> word;
+        }
+
+        temp.name.erase(temp.name.end());
+        gsCategories.push_back(temp);
+        i++;
+    }
+
+    //Begin loading totals
+    i = 0;
+    while (file >> word)
+    {
+        if (word == "Totals:")
+        {
+            while (!(i >= gsCategories.size()))
+            {
+                file >> word;
+                if (word == "e_cell")
+                {
+                    continue;
+                }
+                
+                word.erase(word.begin());
+                stringstream ss;
+
+                ss << word;
+                double amount;
+                ss >> amount;
+                gsCategories[i].total = amount;
+                i++;
+            }
+        }
+    }
+
+    file.close();
+
+//    for (size_t j = 0; j < gsCategories.size(); j++)
+//    {
+//        cout << gsCategories[j].name << endl;
+//        cout << gsCategories[j].total << endl << endl;
+//    }
+
+
+    return gsCategories;
+}
 
 /*****************************************************
  * Print-Budget
@@ -102,7 +194,7 @@ vector <Category> startUp()
  *
  * Returns nothing.
  ****************************************************/
-void printBudget(vector <Category> expenseInfo)
+void printBudget(vector <Category> expenseInfo, vector <googleSheetCategories> secondary)
 {
    cout << setfill('*') << setw(120) << "*" << endl
         << setfill(' ') << setw(67) <<  "Current Budget: " << endl
@@ -118,18 +210,20 @@ void printBudget(vector <Category> expenseInfo)
 
    for (auto it = expenseInfo.begin(); it != expenseInfo.end(); ++it)
    {
-      if (((i + 1) % 2) == 0)
-      {
-         (*it).printCategory(column2 - (expenseInfo[i - 1].numDigits() - 6),i);
-         cout << endl;
-      }
-      else
+      if (((i + 1) % 2) == 0)   //Second Column
       {
          (*it).printCategory(0, i);
+         cout << setw(16 - expenseInfo[i].numDigits()) << secondary[i].total;
+         cout << endl;
+      }
+      else   //First Column
+      {
+         (*it).printCategory(0, i);
+         cout << setw(16 - expenseInfo[i].numDigits()) << secondary[i].total;
       }
 
-      if (i != 0)
-      {
+      if (i != 0)   //To get how much money is left over, we subtract all expenses which
+      {             //are all the categories after the first one.
          leftOver - *it;
       }
 
@@ -189,20 +283,92 @@ int find(string item, vector <Category> categories)
    {
       if (i >= categories.size())
       {
-         break;
+          break;
       }
-      else if (item == lowerCase(categories[i].getName())) 
+      else if (item.find(categories[i].getName()) != string::npos) 
       {
-         return i;
+          return i;
       }
    }
 
    return -1;
 }
 
+/*****************************************************
+ * findGoogle
+ * expects a string name of an item to be found
+ * in the vector of type 'googleSheetCategories'.
+ *
+ * returns an integer index. If found, the int will
+ * be positive, if not, the integer will be negative.
+ ****************************************************/
+int findGoogle(string item, vector <googleSheetCategories> categories)
+{
+    for (size_t i = 0; i < categories.size(); i++)
+    {
+        if (i >= categories.size())
+        {
+            break;
+        }
+        else if (item.find(categories[i].name) != string::npos)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 int main()
 {
    vector <Category> expenseInfo = startUp();
+   vector <googleSheetCategories> gsCategories = googleSheetStartUp();
+
+   //Determine how much money is left over after subtracting
+   //the total money spent from each category.
+   for (size_t i = 0; i < gsCategories.size(); i++)   //Used to make sure that categories from the spreadsheet
+   {                                                  //are known in the program.
+       gsCategories[i].name.erase(gsCategories[i].name.end());
+       if (find(gsCategories[i].name, expenseInfo) < 0)
+       {
+           Category cTemp;
+
+           cTemp.setName(gsCategories[i].name);
+           cTemp.setAmount(gsCategories[i].total);
+
+           expenseInfo.push_back(cTemp);
+       }
+   }
+
+   vector <googleSheetCategories> leftOver;
+
+   for (size_t i = 0; i < expenseInfo.size(); i++)
+   {
+       int index = findGoogle(expenseInfo[i].getName(), gsCategories);
+       if (index < 0)
+       {
+           googleSheetCategories temp;
+           temp.name = "Not Found";
+           temp.total = 0;
+           leftOver.push_back(temp);
+       }
+       else
+       {
+           googleSheetCategories temp;
+           temp.name = expenseInfo[i].getName();
+           temp.total = expenseInfo[i].getAmount() - gsCategories[index].total;
+           leftOver.push_back(temp);
+       }
+   }
+
+   for (size_t i = gsCategories.size(); i < expenseInfo.size(); i++)
+   {
+       googleSheetCategories temp;
+       temp.name = "Not Found";
+       temp.total = 0;
+       leftOver.push_back(temp);
+   }
+
 
    string userInput;
    string inputErrorMessage;
@@ -211,7 +377,7 @@ int main()
    {
       system("CLS");
 
-      printBudget(expenseInfo);
+      printBudget(expenseInfo, leftOver);
       cout << endl;
 
       printHelp(1);
@@ -232,12 +398,11 @@ int main()
       userInput = lowerCase(userInput);
       string sTemp = userInput.substr(0,6);
 
-
       if (userInput == "manage categories")      //Add or delete a category.
       {
 	     inputErrorMessage.clear();
          system("CLS");
-	     printBudget(expenseInfo);
+	     printBudget(expenseInfo, leftOver);
 	     cout << endl;
 	     printHelp(2);
 	     cout << endl << endl;
@@ -290,6 +455,12 @@ int main()
             userInputBack = lowerCase(userInputBack);
 
 	        int index = find(userInputBack, expenseInfo);
+            
+            if (index < 0)
+            {
+                inputErrorMessage = "Unable to find Category.";
+                continue;
+            }
 
             cout << "What is the new name of the Category? ";
 	        string nTemp;

@@ -1,7 +1,7 @@
 Monthly Income 1345.1
 Housing Cost 695
-Power 30
 Intermountain Gas 16
+Rocky Mountain Power 35
 Automotive 90
 Car Repair 12
 Groceries 150
