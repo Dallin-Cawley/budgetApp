@@ -1,2 +1,6 @@
 This program communicates with a Google Sheet to keep track of expenses. There is also an added functionality of creating a shopping list
-based on properlly formatted recipes. If you download the Recipe folder, only use the 
+based on properlly formatted recipes. If you download the Recipe folder, only use the "Bars and Cookies" recipes because they are the ones
+that are formatted correctly.
+
+The Google Sheet functionality has the sheet ID hard codded into it so it will only connect to my Google Sheet. This may or may not work
+for you.
